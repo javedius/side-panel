@@ -4,6 +4,24 @@
 
 A quiet Chrome sidebar for favorite sites, named spaces, open tabs, and quick search. The interface supports English and Russian, following Chrome’s system/interface language by default. The Chrome Web Store listing remains in English.
 
+## Interface previews
+
+English interface illustrations with example data, prepared as opaque **1280×800 PNG** images. These are rendered previews of the current features, not captures of a running browser.
+
+### Favorites, spaces, and tabs
+
+![Space dark sidebar with favorite site icons, Work and Personal spaces, and open tabs](store/screenshots/global/01-sidebar.png)
+
+### Quick search
+
+![Space quick search showing an open tab and sites in Work and Personal spaces](store/screenshots/global/02-quick-search.png)
+
+### Light theme
+
+![Space sidebar in the light theme](store/screenshots/global/03-light-theme.png)
+
+[Download the PNG files and view their provenance](store/screenshots/README.md).
+
 ## Load in Chrome
 
 Clone this repository or use **Code → Download ZIP** on GitHub and extract it:
@@ -81,6 +99,6 @@ See `docs/architecture.md` for ownership and migration details and `docs/verific
 
 Run `npm run package`, then use `release/space-1.21.0.zip` as the extension upload. `release/space-web-store-kit-1.21.0.zip` contains artwork, English listing copy, review notes, the privacy page for public hosting, and the extension ZIP.
 
-Actual current-version screenshots and a public HTTPS privacy-policy URL are still required before submitting. See `store/README.md`. The kit does not fabricate screenshots or publisher/contact details.
+Actual current-version screenshots and a public HTTPS privacy-policy URL are still required before submitting. See `store/README.md`. The kit includes clearly labeled interface illustrations and editable sources; it does not claim they are live browser captures or invent publisher/contact details.
 
 Earlier product notes and verification records are retained in `docs/history.md` and the other `docs/` files; paths in historical entries describe the layout at the time.

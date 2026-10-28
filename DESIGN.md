@@ -44,7 +44,7 @@ Native buttons, links, inputs, selects, disclosures, and dialogs. Localized acce
 
 ## Publication materials
 
-`store/` contains active English copy, promotional artwork, editable SVG, review notes, and the real-screenshot plan. `src/privacy/` is the single policy source for both the installed page and public hosting. The build copies it into the publication kit.
+`store/` contains active English copy, promotional artwork, editable SVG, review notes, and the real-screenshot plan. `store/screenshots/global/` holds three labeled interface illustrations with example data; README embeds them. Their source/provenance is maintained under `store/screenshots/`, separate from actual Chrome capture evidence. `src/privacy/` is the single policy source for both the installed page and public hosting. The build copies it into the publication kit.
 
 Promotional images are explicitly schematic illustrations, not browser screenshots. Do not claim store readiness while real screenshots and a hosted privacy URL are missing. Artwork palette follows the existing neutral brand. No invented publisher/contact details.
 

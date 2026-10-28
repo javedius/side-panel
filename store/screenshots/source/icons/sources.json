@@ -1,0 +1,37 @@
+{
+  "google": {
+    "source": "https://www.google.com/favicon.ico",
+    "size": [
+      32,
+      32
+    ]
+  },
+  "github": {
+    "source": "https://github.com/favicon.ico",
+    "size": [
+      32,
+      32
+    ]
+  },
+  "youtube": {
+    "source": "https://www.youtube.com/favicon.ico",
+    "size": [
+      16,
+      16
+    ]
+  },
+  "figma": {
+    "source": "https://www.figma.com/favicon.ico",
+    "size": [
+      64,
+      64
+    ]
+  },
+  "wikipedia": {
+    "source": "https://en.wikipedia.org/static/favicon/wikipedia.ico",
+    "size": [
+      48,
+      48
+    ]
+  }
+}

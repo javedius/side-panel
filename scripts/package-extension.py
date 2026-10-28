@@ -21,7 +21,12 @@ listing=(STORE/'listing.en.txt').read_text()
 catalog=json.loads((ROOT/'_locales/en/messages.json').read_text())
 name=catalog['extensionName']['message'];description=catalog['extensionDescription']['message']
 assert name in listing and description in listing
-metadata={'name':name,'shortDescription':description,'longDescription':listing.split('FULL DESCRIPTION\n',1)[1].strip(),'version':version,'language':'en','category':'Functionality & UI','privacyPolicyUrl':None,'screenshotFiles':[],'readyToSubmit':False,'pending':['Capture at least one real current-version screenshot','Host the privacy page at a public HTTPS URL','Complete publisher and data-practices fields in the dashboard']}
+previews=json.loads((STORE/'screenshots/previews.json').read_text())
+assert previews['actualBrowserCapture'] is False and previews['version']==version
+preview_files=[]
+for entry in previews['files']:
+    path=STORE/'screenshots'/entry['file'];png(path,(1280,800),2);preview_files.append(path)
+metadata={'name':name,'shortDescription':description,'longDescription':listing.split('FULL DESCRIPTION\n',1)[1].strip(),'version':version,'language':'en','category':'Functionality & UI','privacyPolicyUrl':None,'screenshotFiles':[],'interfacePreviewFiles':[path.relative_to(STORE).as_posix() for path in preview_files],'readyToSubmit':False,'pending':['Capture at least one real current-version screenshot','Host the privacy page at a public HTTPS URL','Complete publisher and data-practices fields in the dashboard']}
 (RELEASE/'listing.json').write_text(json.dumps(metadata,ensure_ascii=False,indent=2)+'\n')
 assert f'version {version}' in (ROOT/'src/privacy/index.html').read_text()
 archive=RELEASE/f'space-{version}.zip'
@@ -30,7 +35,7 @@ with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as out:
 with zipfile.ZipFile(archive) as check:
     assert check.testzip() is None and set(check.namelist())==set(runtime)
     assert json.loads(check.read('manifest.json'))==m
-checks=[archive,STORE/'assets/icon-128.png',STORE/'assets/promo-small-440x280.png',STORE/'assets/promo-marquee-1400x560.png']
+checks=[archive,STORE/'assets/icon-128.png',STORE/'assets/promo-small-440x280.png',STORE/'assets/promo-marquee-1400x560.png',*preview_files]
 sums='\n'.join(hashlib.sha256(path.read_bytes()).hexdigest()+'  '+('upload/'+path.name if path==archive else path.relative_to(STORE).as_posix()) for path in checks)+'\n'
 (RELEASE/'SHA256SUMS.txt').write_text(sums)
 kit=RELEASE/f'space-web-store-kit-{version}.zip'

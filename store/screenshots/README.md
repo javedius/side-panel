@@ -1,15 +1,33 @@
-# Actual screenshots to capture
+# Global screenshot artwork
 
-This folder intentionally contains no fabricated screenshots. Promotional illustrations are in `assets/` and belong in the store's promotional-image fields.
+Three English interface illustrations in the Chrome Web Store image dimensions: **1280×800, RGB PNG, no alpha**. All three appear in the repository README.
 
-Capture at least one current-version screenshot, up to five. Use 1280×800 pixels where possible, JPEG or opaque PNG, rectangular corners, and a full-bleed image.
+| Preview | PNG |
+|---|---|
+| Favorites, spaces, and tabs in the dark theme | [01-sidebar.png](global/01-sidebar.png) |
+| Quick search across open tabs and saved sites | [02-quick-search.png](global/02-quick-search.png) |
+| Light theme | [03-light-theme.png](global/03-light-theme.png) |
 
-Suggested views:
+## Provenance
 
-1. **01-sidebar.png** — Space on an ordinary site with several favorites, an expanded Work space, a Personal space, and open tabs. Use demonstration links without private documents or account information.
-2. **02-search.png** — Command+K / Alt+K with a query and three to five actual matches from open tabs and saved sites. Capture the English UI from version 1.20.0.
-3. **03-light-settings.png** — Light theme and settings, showing the theme/panel choices. A real backup import preview is an alternative third view.
+These are **code-rendered interface illustrations with example data**, not screenshots captured from a running Chrome installation. Each image says “Interface illustration · Example data”. They depict existing features; they are not evidence of live extension behavior, hotkey assignment, or store acceptance.
 
-Reload the extension and webpage before capturing. Do not use old Russian-interface screenshots or draw results that are absent from the real UI. Preserve the aspect ratio if resizing a larger capture.
+The renderer reads both palettes from `src/shared/ui-settings.js` and produces search matches through the actual `src/search/model.js` rules. Sidebar geometry follows `src/panel/styles.css`; search geometry follows `src/search/styles.css`. Example site/space/tab data is in `source/examples.json`. No private browser data is used or modified. `previews.json` records the extension version, source hashes, dimensions and capture type. Site icons come from the websites' public favicon URLs recorded in `source/icons/sources.json`; those marks belong to their respective owners.
 
-The agent's access to the existing Chrome installation was previously denied; no alternative automation route was used for that target. Actual current-version screenshots remain pending and cannot be replaced by the promotional artwork.
+Editable SVG versions are in `source/`. They are illustration sources, not application UI or browser test results.
+
+## Regenerate
+
+Install Pillow in your own Python environment, then run from the project root:
+
+```sh
+python3 scripts/render-screenshots.py
+```
+
+Node.js is also required to read runtime palettes and matching rules. Pre-rendered files are committed, so the normal check/test/package workflow does not require Pillow or fonts. The renderer uses local Arial when available, otherwise DejaVu Sans.
+
+## Actual browser captures
+
+Chrome access was denied when capture was attempted. No alternative browser adapter, profile reader, or headless session was used to bypass that denial. Actual current-version captures remain outstanding. For those, open Space with example sites on an ordinary page and capture its sidebar, quick search, and light theme. Use an English interface, rectangular 1280×800 or 640×400 images, and no private account content.
+
+See [Chrome's screenshot guidance](https://developer.chrome.com/docs/webstore/best-listing#screenshots). Accurate core features, current appearance, and readable imagery matter; these files do not assert that Google has reviewed or approved them.

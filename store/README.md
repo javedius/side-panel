@@ -13,8 +13,11 @@ Version **1.21.0** · English/Russian interface · English listing · prepared O
 | Listing name and descriptions | `listing.en.txt` or `listing.json` |
 | Purpose, permissions, data handling, review steps | `review-notes.en.md` |
 | Privacy page for public hosting | `privacy/index.html` and `privacy/privacy.css` |
-| Actual screenshot capture plan | `screenshots/README.md` |
+| Interface preview PNGs, 1280×800 | `screenshots/global/*.png` |
+| Preview provenance and actual capture plan | `screenshots/README.md` |
 | Editable artwork | `source/*.svg` |
+
+`screenshots/global/` contains three clearly labeled interface illustrations with example data, also displayed in the repository README. They are not captures of a running Chrome window.
 
 `assets/preview.jpg` is a review sheet, not a store screenshot. The promotional tiles use schematic illustrations of the product, not captured Chrome UI.
 

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800">
+<title>Space interface illustration with example data</title>
+<rect width="1280" height="800" fill="#181818"/>
+<rect x="67.125" y="51.125" width="16.25" height="16.25" rx="5" fill="none" stroke="#ededeb" stroke-width="3.125"/>
+<rect x="75.25" y="59.25" width="16.25" height="16.25" rx="5" fill="#ededeb"/>
+<text x="106" y="51" dominant-baseline="text-before-edge" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#ededeb">Space</text>
+<rect x="1035" y="47" width="177" height="40" rx="8" fill="#242424" stroke="#343434" stroke-width="1"/>
+<text x="1088.5" y="60" dominant-baseline="text-before-edge" font-family="Arial,sans-serif" font-size="15" font-weight="400" fill="#c6c6bf">⌘K / Alt+K</text>
+<rect x="112" y="150" width="230" height="360" rx="12" fill="#1c1c1c"/>
+<rect x="137" y="183" width="180" height="5" rx="2" fill="#242424"/>
+<rect x="137" y="226" width="180" height="5" rx="2" fill="#242424"/>
+<rect x="137" y="269" width="180" height="5" rx="2" fill="#242424"/>
+<rect x="137" y="312" width="180" height="5" rx="2" fill="#242424"/>
+<rect x="137" y="355" width="180" height="5" rx="2" fill="#242424"/>
+<rect x="137" y="398" width="180" height="5" rx="2" fill="#242424"/>
+<rect x="375" y="150" width="768" height="360" rx="12" fill="#1c1c1c"/>
+<rect x="400" y="183" width="490" height="5" rx="2" fill="#242424"/>
+<rect x="400" y="226" width="459" height="5" rx="2" fill="#242424"/>
+<rect x="400" y="269" width="428" height="5" rx="2" fill="#242424"/>
+<rect x="400" y="312" width="397" height="5" rx="2" fill="#242424"/>
+<rect x="400" y="355" width="366" height="5" rx="2" fill="#242424"/>
+<rect x="400" y="398" width="335" height="5" rx="2" fill="#242424"/>
+<rect x="280" y="200" width="720" height="304.5" rx="24" fill="#181818" stroke="#77776c" stroke-width="1"/>
+<image x="301" y="227" width="24" height="24" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAE7klEQVR4nL1Xa2xURRT+5txll+52uynPQkFqbYHysDyMPCSm2qAIajD+QKOJGPsDxWgTNAENiRhAkfCj0RhFidHgg8QYo4FACb4ICBQDldBIsAUklJZC6drudru7c465677u7qXdFvT7tXvOufOdOTPzzRmFHMHMBQAeFpH7AVQCKAXgjbv/BnAOQKNS6gCA3URk2m4ezDxFa/2J1rpXcoTWOqi13sHM5UMmFhG31nqb1jqaK7FNIhGt9VZmzhvsrCdrrU8Pldgmkd+ZucyOS9mQzxGRfUQ0KtOnL19C34/1iJw4juiFFrC/yywVqMAHY1IpnJVz4KpeAqN4ot2kOojoAaXUyRsmwMyTReRQJrlua0Vg+7voO/hDjLBfKAXXPVXwrHoZRtH4rCSUUguJ6M+sBJjZIyLHiGha+keh/XvQU7cFEurtnzgzjzw3vGteh6tqcWYSp5RS84goNiAlHCLyZiZ58KtP0b3ljUGTx8brDSLc8GuWnYhmisiGZKKIHzUROU1ERvrMTXI7OErL4Lx7IYxxxbGS69ZLCDccRrT5bDJm+LLH4K1dG/NngpmjSqkKcyliXvOcE9HK9M12veZJSF/I8qFJmF+7Fs6582wTCx8/gu5tm+BaVIX81Wv6rRAz7zAMo0aJiI+Z24hoeMIZqHsJwe+PWD4YVjEDvs11UN6E+NlDggEot6ffmHgCQaVUEYnIsnRy6W2Bq2I7XHd1JINpxEgUbNw2ILmJXMhjYxK5ASyluLanZtC+CzAY7sWX4Fl+Hsop8Dy3GuQrxK2Gye2IXywpY+dPyd/Oii44ivPhrF6C/wiVjvitlkog0GSJMMrnAw4zzB7VmwM5s61f7kLVNMtYpaYOWBc2klp7EyrPVsKHhNauLBX1JYXo/0A4mi3jFG8mUhg22vJXgilxuVl4XFmi5HfEO5mRCYvKnw7pbE9GtHU1YQxHMYzs98GB1+yP3bkORs1HVgkf68tKoMWsQGO6RRXel/y9t28CnmgtxZ7zP2OwONass2yTxyWVPoFGivdwqQTGrkAEDmztuRMbuucgBAPvn/oC10JdOZP3hARfH41YbLeNIhRlVMDkNiuwm5mTtVJ5JfjQsw7fhEqSgZ0hP2p/2Qx/uHtA8ogGNn7bh86AdcM9FDvxWVK8h+Ld65fpzhUzV8HtSKpzDH9cb8HT+17Fwdbfbkh+tusCnt+9Cw0tYYt9hEfhkdlZe+hzpVRP4jouF5EmotRO23vhINYfqbMlKikoxoKi2ZiYX2SWEVd6r+HElSY0Xj0DgcAIlcHd/iJU9F/53vD4cCyaklp/Zo7Er+Pm5KKY3SsRvZJOtPPMd6g7+RmGAqW9yGt/Ac/OrcTKe50WHzO/bRjGulhcehvOzEeJaEZ6cP1fh7Cp4QMEo4PrigxloKbiKdTMfDSTvJGI5iulQnZNaZmIHCYiixq1Ba/ivcad2H/xEHigphTA3DHTUTvrGUwttFwz5vjtRLRQKdWSsKnMj0VkFjPXZyZh4nKgI5ZEQ/spNPsv4nqfP9Yk+1xeTPKOx6zRU1E9YQGmFN6elZRJrpR6kIgsumMLsxLmY+IWPkxOioi1HAOBmfO01u+Yz6ubIA5rrd8SEeuZHmQiZVrrj7XWgUEQB7TW25n5joHGz+6Zb5yI2TcszXie++Juv3mxJJ7npsKZIpPLuP8A3ch+lx6hUH8AAAAASUVORK5CYII="/>
+<text x="340" y="225.5" dominant-baseline="text-before-edge" font-family="Arial,sans-serif" font-size="24" font-weight="400" fill="#ededeb">design</text>
+<text x="907" y="225.5" dominant-baseline="text-before-edge" font-family="Arial,sans-serif" font-size="27" font-weight="400" fill="#a5a5a0">×</text>
+<polyline points="943,240.5 965.5,240.5 956.5,231.5" fill="none" stroke="#a5a5a0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="965.5,240.5 956.5,249.5" fill="none" stroke="#a5a5a0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="292,281 988,281" fill="none" stroke="#343434" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="307" y="293" dominant-baseline="text-before-edge" font-family="Arial,sans-serif" font-size="19.5" font-weight="400" fill="#ededeb">Design notes</text>
+<text x="307" y="323" dominant-baseline="text-before-edge" font-family="Arial,sans-serif" font-size="15" font-weight="400" fill="#a5a5a0">Open tab</text>
+<text x="307" y="363.5" dominant-baseline="text-before-edge" font-family="Arial,sans-serif" font-size="19.5" font-weight="400" fill="#ededeb">Design resources</text>
+<text x="307" y="393.5" dominant-baseline="text-before-edge" font-family="Arial,sans-serif" font-size="15" font-weight="400" fill="#a5a5a0">Space · Work</text>
+<text x="307" y="434" dominant-baseline="text-before-edge" font-family="Arial,sans-serif" font-size="19.5" font-weight="400" fill="#ededeb">Design inspiration</text>
+<text x="307" y="464" dominant-baseline="text-before-edge" font-family="Arial,sans-serif" font-size="15" font-weight="400" fill="#a5a5a0">Space · Personal</text>
+<text x="68" y="578" dominant-baseline="text-before-edge" font-family="Arial,sans-serif" font-size="48" font-weight="700" fill="#ededeb">One shortcut. Every destination.</text>
+<text x="71" y="653" dominant-baseline="text-before-edge" font-family="Arial,sans-serif" font-size="21" font-weight="400" fill="#a5a5a0">Switch tabs, open saved sites, or search the web.</text>
+<text x="68" y="750" dominant-baseline="text-before-edge" font-family="Arial,sans-serif" font-size="11" font-weight="400" fill="#a5a5a0">Interface illustration · Example data</text>
+</svg>
