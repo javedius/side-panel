@@ -15,7 +15,7 @@ Strict, minimal, neutral utility interface. Preserve the user's Zen-inspired sid
 - Dark: background #181818, surface #242424, hover #2e2e2e, text #ededeb, muted #a5a5a0, accent #d0d0c9.
 - Light: background #f5f5f3, surface #ffffff, hover #e9e9e6, text #252522, muted #64645d, accent #44443e.
 - Typography: system sans-serif, compact utility labels, readable titles. No remotely loaded fonts.
-- Existing overlapping-space mark is the identity. Favorite sites and the selected provider use Chrome favicons with neutral fallback. The store icon uses the same mark on a graphite tile with transparent outer padding.
+- Existing overlapping-space mark is the identity. Favorites, saved sites in spaces, live tabs, and quick-search results use the shared `src/shared/site-icon.js`/`site-icon.css` component and Chrome favicon cache. Keep each icon footprint stable while loading; missing/invalid/internal-page icons use a neutral globe, never initials. The selected search provider also uses its Chrome favicon. The store icon uses the same mark on a graphite tile with transparent outer padding.
 
 Geometry belongs to each maintained stylesheet; do not copy styling into feature modules or introduce alternate palettes.
 

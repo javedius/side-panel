@@ -313,13 +313,13 @@ test('favorites show Chrome favicon images, keep accessible site names, and reco
   local.sites=[favorite];
   for(const callback of chrome.storage.onChanged.callbacks) callback({sites:{newValue:local.sites}},'local');
   const button=find('site-favicon-test'),mark=button.children[0],fallback=mark.children[0],img=mark.querySelector('img');
-  assert.equal(mark.className,'site-icon favorite-favicon');assert.equal(mark.textContent,undefined);
+  assert.equal(mark.className,'site-icon site-favicon');assert.equal(mark.textContent,undefined);
   assert.ok(button.attrs['aria-label'].startsWith('Моя почта'));assert.equal(img.alt,'');
   const source=new URL(img.src);assert.equal(source.origin,'null');assert.equal(source.protocol,'chrome-extension:');
   assert.equal(source.hostname,'test');assert.equal(source.pathname,'/_favicon/');
   assert.equal(source.searchParams.get('pageUrl'),favorite.url);assert.equal(source.searchParams.get('size'),'64');
   assert.equal(img.hidden,true);assert.notEqual(fallback.hidden,true);
-  await img.fire('load');assert.equal(img.hidden,false);assert.equal(fallback.hidden,true);
+  img.naturalWidth=32;await img.fire('load');assert.equal(img.hidden,false);assert.equal(fallback.hidden,true);
   await img.fire('error');assert.equal(img.hidden,true);assert.equal(fallback.hidden,false);
   assert.equal(fallback.textContent,undefined,'fallback is a website icon, never the first letter');
   local.sites=before;
@@ -483,4 +483,28 @@ test('saving a language updates panel actions/player/errors and leaves all saved
     Object.assign(local,original);
     for(const callback of chrome.storage.onChanged.callbacks)callback({uiSettings:{newValue:local.uiSettings}},'local');
   }
+});
+
+test('space sites and ordinary browser tabs use logos; internal tabs retain neutral marks without letters',async()=>{
+  const before=structuredClone({sites:local.sites,spaceConfig:local.spaceConfig,tabs});
+  const refresh=async()=>{
+    for(const callback of chrome.storage.onChanged.callbacks)callback({sites:{newValue:local.sites},spaceConfig:{newValue:local.spaceConfig}},'local');
+    await ids.get('retry-tabs').fire('click');
+  };
+  try {
+    local.spaceConfig={spaces:[{id:'icons-work',name:'Work'}],expandedIds:['icons-work']};
+    local.sites=[{id:'icons-site',name:'Docs',url:'https://docs.test/',section:'space',spaceId:'icons-work',icon:'D'}];
+    tabs=[{id:901,index:0,windowId:1,url:'https://news.test/',title:'News',active:true},
+      {id:902,index:1,windowId:1,url:'chrome://newtab/',title:'New tab',active:false}];
+    await refresh();
+    for(const [key,url] of [['site-icons-site','https://docs.test/'],['tab-901','https://news.test/']]) {
+      const mark=find(key).children[0],image=mark.querySelector('img');
+      assert.equal(mark.className,'site-icon site-favicon');assert.equal(mark.textContent,undefined);
+      assert.equal(new URL(image.src).searchParams.get('pageUrl'),url);assert.equal(image.width,20);
+      image.naturalWidth=32;await image.fire('load');assert.equal(image.hidden,false);
+      await image.fire('error');assert.equal(mark.children[0].hidden,false);
+    }
+    const internal=find('tab-902').children[0];assert.equal(internal.children.length,1);
+    assert.equal(internal.children[0].className,'favicon-fallback');assert.equal(internal.textContent,undefined);
+  } finally {local.sites=before.sites;local.spaceConfig=before.spaceConfig;tabs=before.tabs;await refresh();}
 });

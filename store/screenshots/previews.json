@@ -1,7 +1,7 @@
 {
   "kind": "interface-illustrations",
   "actualBrowserCapture": false,
-  "version": "1.21.0",
+  "version": "1.22.0",
   "data": "source/examples.json",
   "renderer": "scripts/render-screenshots.py",
   "files": [
@@ -25,9 +25,11 @@
     }
   ],
   "sourceHashes": {
-    "src/panel/styles.css": "a054b364b41381caf3af3e5a920fcce0fe3f93d23362ac19cfe548e45ba46125",
-    "src/search/styles.css": "65edad211c43b4d7b6dd4e66a8d0c1f14b131003478101565e2208bbcdf559ca",
+    "src/panel/styles.css": "07d5b817ed9fc11f2abb03289d61a2629ea9f3be702a6e30700d04ce50fa1ae1",
+    "src/search/styles.css": "2ffa44d091a7ad290fa19e9d65835a8dbbc8d9ce2b83efd5330b41acb561a08e",
     "src/shared/ui-settings.js": "93095a906f8cb5615551aa3a65b9d2a1e372d9bfde7f089e18a8e3b7c92cbd9b",
-    "src/search/model.js": "038eda47279695fff91d40c417ec912e3356059071e3d3e76415acdeb14e03c2"
+    "src/search/model.js": "038eda47279695fff91d40c417ec912e3356059071e3d3e76415acdeb14e03c2",
+    "src/shared/site-icon.js": "0e800defb63f6884a6114c064e09af0175552b477ab473ef57448b28966d1bc4",
+    "src/shared/site-icon.css": "f7cfb10e008ce49bdf470cd20cf30837b44c0a095cf0b7dc6b4b3402643ee61a"
   }
 }

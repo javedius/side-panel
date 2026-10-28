@@ -45,6 +45,7 @@ The manifest remains at the original project root, so an existing unpacked insta
 - Arrow keys or Tab select a matching open tab or saved site; Enter activates it.
 - Drag sites to reorder/move them, or save an ordinary tab by dragging it into Favorites or a space. Menu actions provide non-drag alternatives.
 - **Panel menu → Backup** exports/imports sites, spaces, and settings. Import includes a preview and keeps the previous state for recovery.
+- Website icons appear in Favorites, Spaces, Tabs, and quick-search results. A neutral website mark appears when an icon is unavailable.
 - **Panel settings** contains language, theme, panel mode, site button, shortcuts, and privacy information.
 
 **Panel settings → Appearance → Language** offers **System default**, **English**, and **Русский**. Automatic mode uses Chrome’s UI language (with the system/browser language as a preview fallback); unsupported languages use English. Language is saved locally, included in backups, and shared by the sidebar, search, and site button. Your site and space names are never translated.
@@ -97,7 +98,7 @@ See `docs/architecture.md` for ownership and migration details and `docs/verific
 
 ## Chrome Web Store
 
-Run `npm run package`, then use `release/space-1.21.0.zip` as the extension upload. `release/space-web-store-kit-1.21.0.zip` contains artwork, English listing copy, review notes, the privacy page for public hosting, and the extension ZIP.
+Run `npm run package`, then use `release/space-1.22.0.zip` as the extension upload. `release/space-web-store-kit-1.22.0.zip` contains artwork, English listing copy, review notes, the privacy page for public hosting, and the extension ZIP.
 
 Actual current-version screenshots and a public HTTPS privacy-policy URL are still required before submitting. See `store/README.md`. The kit includes clearly labeled interface illustrations and editable sources; it does not claim they are live browser captures or invent publisher/contact details.
 

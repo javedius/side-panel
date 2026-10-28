@@ -11,6 +11,7 @@ import hashlib
 import html
 import json
 import subprocess
+from urllib.parse import urlsplit
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -134,6 +135,15 @@ def footer_note(a,light=False):
     a.text(68,750,'Interface illustration · Example data',11,c['--muted'])
 
 
+def website_icon(a,url,x,y,size,fallback):
+    host=urlsplit(url).hostname or ''
+    for name,domain in [('google','google.com'),('github','github.com'),('youtube','youtube.com'),('figma','figma.com'),('wikipedia','wikipedia.org')]:
+        if host==domain or host.endswith('.'+domain):
+            a.icon(name,x,y,size,fallback)
+            return
+    a.globe(x,y,size,fallback)
+
+
 def panel(a,x,y,w,h,theme='dark'):
     c=DATA[theme];k=w/360
     a.shadow(x,y,w,h,12*k)
@@ -160,8 +170,9 @@ def panel(a,x,y,w,h,theme='dark'):
     chevron(a,x+34*k,y+(yy+20)*k,c['--muted'],True,k)
     tx(54,yy+14,'Work',13);tx(93,yy+15,'1',11,c['--muted'])
     yy+=40
-    tx(29,yy+15,'D',12,c['--muted'],True)
-    tx(54,yy+9,'Design resources',13,max_width=240);tx(54,yy+27,'example.com',10,c['--muted'])
+    resource=next(site for site in DATA['data']['sites'] if site['id']=='resources')
+    website_icon(a,resource['url'],x+24*k,y+(yy+12)*k,20*k,c['--muted'])
+    tx(54,yy+9,resource['name'],13,max_width=240);tx(54,yy+27,urlsplit(resource['url']).hostname,10,c['--muted'])
     yy+=46
     chevron(a,x+34*k,y+(yy+20)*k,c['--muted'],False,k)
     tx(54,yy+14,'Personal',13);tx(111,yy+15,'1',11,c['--muted'])
@@ -172,7 +183,7 @@ def panel(a,x,y,w,h,theme='dark'):
     for i,tab in enumerate(DATA['data']['tabs']):
         top=yy+i*44
         if tab['active']:box(16,top,322,40,c['--active'],6)
-        tx(29,top+14,'D' if i==0 else 'P',12,c['--muted'],True)
+        website_icon(a,tab['url'],x+24*k,y+(top+10)*k,20*k,c['--muted'])
         tx(54,top+13,tab['title'],13,max_width=245)
     deck=h/k-62
     tx(22,deck+8,'Media in your tabs',11)
@@ -221,8 +232,9 @@ def search():
     a.line([(x+8*k,y+54*k),(x+w-8*k,y+54*k)],c['--line'])
     for i,item in enumerate(matches):
         top=y+(62+i*47)*k
-        a.text(x+18*k,top,item['title'],13*k,c['--text'])
-        a.text(x+18*k,top+20*k,item['detail'],10*k,c['--muted'])
+        website_icon(a,item['url'],x+18*k,top+7*k,16*k,c['--muted'])
+        a.text(x+44*k,top,item['title'],13*k,c['--text'])
+        a.text(x+44*k,top+20*k,item['detail'],10*k,c['--muted'])
     a.text(68,578,'One shortcut. Every destination.',48,c['--text'],True)
     a.text(71,653,'Switch tabs, open saved sites, or search the web.',21,c['--muted'])
     footer_note(a)
@@ -231,7 +243,7 @@ def search():
 
 if __name__=='__main__':
     files=[overview(),search(),overview(True)]
-    sources=['src/panel/styles.css','src/search/styles.css','src/shared/ui-settings.js','src/search/model.js']
+    sources=['src/panel/styles.css','src/search/styles.css','src/shared/ui-settings.js','src/search/model.js','src/shared/site-icon.js','src/shared/site-icon.css']
     manifest={'kind':'interface-illustrations','actualBrowserCapture':False,'version':json.loads((ROOT/'manifest.json').read_text())['version'],
               'data':'source/examples.json','renderer':'scripts/render-screenshots.py','files':files,
               'sourceHashes':{name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in sources}}

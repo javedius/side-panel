@@ -213,10 +213,10 @@ body.popup {
   border-top: 1px solid var(--line);
 }
 .search-result {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 3px;
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  align-items: center;
+  gap: 3px 10px;
   width: 100%;
   padding: 8px 10px;
   border-radius: 8px;
@@ -238,4 +238,17 @@ body.popup {
 .search-result small {
   font-size: 10px;
   color: var(--muted);
+}
+
+.search-result > .site-icon {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+.search-result > .result-title {
+  grid-column: 2;
+  grid-row: 1;
+}
+.search-result > small {
+  grid-column: 2;
+  grid-row: 2;
 }

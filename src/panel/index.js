@@ -5,6 +5,7 @@ import {createMenus} from './menus.js';
 import {createDragAndDrop} from './drag-drop.js';
 import '../shared/paths.js';
 import '../shared/ui-settings.js';
+import '../shared/site-icon.js';
 import { normalizeSpaceConfig, assignSitesToSpaces, validateSpaceName } from '../spaces/model.js';
 import { MediaController } from '../media/controller.js';
 import { TabsController } from '../tabs/controller.js';
@@ -180,23 +181,6 @@ function spaceNode(space) {
   wrapper.append(details,actions);bindDrop(wrapper,()=>({section:'space',spaceId:space.id}));return wrapper;
 }
 function notify(message,undo=false){clearTimeout(timer);$('status-text').textContent=message;$('undo').hidden=!undo;$('status').hidden=false;timer=setTimeout(()=>{$('status').hidden=true;},undo?12000:4000);}
-function icon(site){const el=document.createElement('span');el.className='site-icon';el.textContent=site.icon||new URL(site.url).hostname.replace(/^www\./,'')[0].toUpperCase();el.style.setProperty('--icon-bg',site.bg||'var(--icon-default-bg)');el.style.setProperty('--icon-color',site.color||'var(--icon-default-text)');el.setAttribute('aria-hidden','true');return el;}
-function favoriteIcon(site) {
-  const el=document.createElement('span');el.className='site-icon favorite-favicon';el.setAttribute('aria-hidden','true');
-  const fallback=document.createElement('span');fallback.className='favicon-fallback';el.append(fallback);
-  try {
-    const page=new URL(site.url);
-    if(!['http:','https:'].includes(page.protocol)||!globalThis.chrome?.runtime?.getURL) return el;
-    const source=new URL(chrome.runtime.getURL('_favicon/'));
-    source.searchParams.set('pageUrl',page.href);source.searchParams.set('size','64');
-    const img=document.createElement('img');img.alt='';img.width=24;img.height=24;
-    img.hidden=true;img.decoding='async';img.referrerPolicy='no-referrer';
-    img.addEventListener('load',()=>{img.hidden=false;fallback.hidden=true;});
-    img.addEventListener('error',()=>{img.hidden=true;fallback.hidden=false;});
-    el.append(img);img.src=source.href;
-  } catch { /* Invalid/preview URLs retain the neutral website mark. */ }
-  return el;
-}
 function host(url) {
   try { return new URL(url).hostname || url; } catch { return url || t('New tab'); }
 }
@@ -295,7 +279,7 @@ function siteNode(site,tile) {
     site.name+(tab?.active?t(', current tab'):tab?t(', open'):t(', open site')));
   if(tab?.active) el.setAttribute('aria-current','page');
   el.title=site.name+' · '+(tab?.url||site.url);
-  el.append(tile?favoriteIcon(site):icon(site));
+  el.append(SpaceSiteIcon.create(site,tile?24:20));
   const copy=document.createElement('span'); copy.className=tile?'site-name':'site-copy';
   if(tile) copy.textContent=site.name;
   else {
@@ -343,7 +327,7 @@ function renderTabs() {
     button.title=name+' · '+(tab.url||'');
     button.setAttribute('aria-label',name+(tab.active?t(', current tab'):''));
     if(tab.active) button.setAttribute('aria-current','page');
-    button.append(icon({name,url:tab.url||'https://example.com',icon:host(tab.url)[0]?.toUpperCase()||'◧'}));
+    button.append(SpaceSiteIcon.create(tab));
     const label=document.createElement('span'); label.className='tab-name'; label.textContent=name;
     button.append(label);
     if(/^https?:/.test(tab.url||'')) bindDrag(button,{kind:'tab',id:tab.id});

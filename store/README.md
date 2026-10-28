@@ -1,12 +1,12 @@
 # Space — Chrome Web Store kit
 
-Version **1.21.0** · English/Russian interface · English listing · prepared October 27, 2026.
+Version **1.22.0** · English/Russian interface · English listing · prepared October 27, 2026.
 
 ## Upload files
 
 | Purpose | File inside this kit |
 |---|---|
-| Extension package | `upload/space-1.21.0.zip` |
+| Extension package | `upload/space-1.22.0.zip` |
 | Store icon, 128×128 | `assets/icon-128.png` |
 | Small promotional tile, 440×280 | `assets/promo-small-440x280.png` |
 | Marquee promotional tile, 1400×560 | `assets/promo-marquee-1400x560.png` |

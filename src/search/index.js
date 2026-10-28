@@ -1,5 +1,6 @@
 import '../shared/messages.js';
 import '../shared/i18n.js';
+import '../shared/site-icon.js';
 const t=(key,values)=>globalThis.SpaceI18n.t(key,values);
 const $=id=>document.getElementById(id);
 const params=new URLSearchParams(window.location.search),token=params.get('token'),windowId=Number(params.get('windowId'));
@@ -26,7 +27,7 @@ async function findMatches() {
       button.type='button';button.className='search-result';button.title=item.title+' · '+item.url;
       const name=document.createElement('span');name.className='result-title';name.textContent=item.title;
       const detail=document.createElement('small');detail.textContent=item.detail.startsWith('Space · ')?t('Space · {name}',{name:item.detail.slice(8)}):t(item.detail);
-      button.append(name,detail);row.append(button);results.append(row);matchButtons.push(button);
+      button.append(name,detail,SpaceSiteIcon.create(item,16));row.append(button);results.append(row);matchButtons.push(button);
       button.addEventListener('click',()=>submit(item.key));
     }
     results.hidden=!matchItems.length;

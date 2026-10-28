@@ -206,3 +206,8 @@ Privacy is maintained once in `src/privacy/`. Store listing JSON/hashes and curr
 ## Language — 1.21.0
 
 English/Russian UI follows Chrome's interface language by default, with browser/system language fallback for standalone previews and English for unsupported locales. Appearance settings offers System default / English / Русский. Save persists `uiSettings.language`; Cancel and failed writes preserve the previous language. Theme, placement, engine, sites, names, ordering, and open tabs do not change when language changes. Existing preferences and old backups migrate to `auto`; explicit choices roundtrip in schema-v1 backups. Static copy, accessible labels, dynamic menus, validation/worker errors, search-result kind labels, and player controls share translations. Site/space/track titles and queries remain user content. A language change refreshes open extension documents and website shells; content scripts never translate website DOM or change its language. Metadata uses Chrome's localized manifest catalogs; store materials/public policy stay English.
+
+
+## Website logos — 1.22.0
+
+All website representations in Favorites, Spaces, Tabs, and quick-search results use the shared Chrome favicon component. Letter/initial marks are not shown, including for legacy saved sites. The component reserves its 16/20/24px footprint while loading and falls back to a neutral website globe on missing image, invalid URL, internal page, or absent browser API. Search labels, keyboard interaction, tab activation, and site names do not change on icon load/failure. Existing icon metadata is retained in saved data for backup compatibility. Documentation illustrations use actual example-site logos in every website row.

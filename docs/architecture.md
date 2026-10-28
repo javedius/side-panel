@@ -1,6 +1,6 @@
 # Architecture and project organization
 
-Version 1.21.0 · October 27, 2026.
+Version 1.22.0 · October 27, 2026.
 
 ## Entry points
 
@@ -53,3 +53,6 @@ Storage keys, saved IDs/order, window/session keys, permissions, and JSON backup
 Before the move, all 110 tests passed. The original folder was snapshotted to `/tmp/space-before-organization-2026-10-27.tar.gz`. Historical docs retain their original names/paths as evidence; this document and the root README define the current layout.
 
 Real Chrome automation for this installation remains unavailable under the previously recorded denial. No alternate access route was used; physical hotkey, native drag, and real screenshot verification remain distinct from automated adapter tests.
+
+
+1.22.0: `src/shared/site-icon.js` and `site-icon.css` own the favicon component shared by Favorites, space sites, live tabs, and quick-search results. HTTP(S) destinations use extension-owned `_favicon/` URLs; invalid/internal destinations and image failures use a fixed-size neutral website mark. Existing saved `icon`, color, and background metadata remains compatible with backups but no longer produces initials in the UI. Icons are decorative; accessible site/tab/result names stay on the existing controls. No new permissions or outside icon service is added.

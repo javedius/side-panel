@@ -4,6 +4,7 @@ import vm from 'node:vm';
 import {readFile} from 'node:fs/promises';
 const localeSource=(await readFile(new URL('../../src/shared/messages.js',import.meta.url),'utf8'))+'\n'+(await readFile(new URL('../../src/shared/i18n.js',import.meta.url),'utf8'));
 const pathsSource=await readFile(new URL('../../src/shared/paths.js',import.meta.url),'utf8');
+const siteIconSource=await readFile(new URL('../../src/shared/site-icon.js',import.meta.url),'utf8');
 const settings=await readFile(new URL('../../src/shared/ui-settings.js',import.meta.url),'utf8');
 const searchModel=await readFile(new URL('../../src/search/model.js',import.meta.url),'utf8');
 const worker=await readFile(new URL('../../src/background/search.js',import.meta.url),'utf8');
@@ -93,7 +94,7 @@ test('a blocked injection falls back to the popup; trusted close clears only its
   assert.equal(f.record(),undefined);assert.equal(f.calls.create.length,0);
 });
 class Element {
-  constructor(){this.listeners={};this.children=[];this.value='';this.attrs={};this.classList={add(){}};this.hidden=false;}
+  constructor(){this.listeners={};this.children=[];this.value='';this.attrs={};this.style={setProperty(){}};this.classList={add(){}};this.hidden=false;}
   addEventListener(type,fn){(this.listeners[type]??=[]).push(fn);}
   setAttribute(key,value){this.attrs[key]=value;}
   append(...nodes){this.children.push(...nodes);}
@@ -109,7 +110,7 @@ function searchPage({getSettings=async()=>({uiSettings:{searchEngine:'bing'}})}=
   const context=vm.createContext({URL,URLSearchParams,document:doc,
     window:{location:{search:'?token=t&windowId=7'},parent:{postMessage:message=>closed.push(message)}},
     chrome:{storage:{local:{get:getSettings},onChanged:storage},runtime:{getURL:path=>'chrome-extension://ext/'+path,sendMessage:message=>{messages.push(message);return reply(message);}}}});
-  vm.runInContext(pathsSource,context);vm.runInContext(localeSource,context);vm.runInContext(settings,context);vm.runInContext(page,context);
+  vm.runInContext(pathsSource,context);vm.runInContext(localeSource,context);vm.runInContext(settings,context);vm.runInContext(siteIconSource,context);vm.runInContext(page,context);
   return {elements,events,messages,closed,storage,doc,setReply:fn=>{reply=fn;}};
 }
 test('search form handles clear, IME, busy duplicates and successful dismissal',async()=>{
@@ -242,4 +243,17 @@ test('search localizes provider, result kinds and errors while preserving site t
   f.storage.fire({uiSettings:{newValue:{language:'en',searchEngine:'google'}}},'local');await flush();
   assert.equal(e['search-provider-icon'].attrs['aria-label'],'Search engine: Google');
   assert.equal(e['search-results'].children[0].children[0].children[1].textContent,'Space · Work');
+});
+
+test('search result logos load through Chrome and failures preserve labels and keyboard navigation',async()=>{
+  const f=searchPage(),e=f.elements;
+  f.setReply(async()=>({matches:[{key:'site:docs',title:'Docs',url:'https://docs.test/?a=1&b=2',detail:'Space · Work'}]}));
+  e['search-query'].value='docs';await e['search-query'].fire('input');await flush();
+  const button=e['search-results'].children[0].children[0],mark=button.children[2],[fallback,image]=mark.children;
+  assert.equal(mark.className,'site-icon site-favicon');assert.equal(mark.attrs['aria-hidden'],'true');
+  assert.equal(image.width,16);assert.equal(new URL(image.src).searchParams.get('pageUrl'),'https://docs.test/?a=1&b=2');
+  image.naturalWidth=32;await image.fire('load');assert.equal(image.hidden,false);assert.equal(fallback.hidden,true);
+  await image.fire('error');assert.equal(fallback.hidden,false);assert.equal(fallback.textContent,undefined);
+  assert.equal(button.children[0].textContent,'Docs');
+  f.events.keydown({key:'ArrowDown',preventDefault(){}});assert.equal(f.doc.activeElement,button);
 });

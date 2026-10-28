@@ -1,17 +1,80 @@
 {
   "sites": [
-    {"id":"google","name":"Google","url":"https://www.google.com/","section":"favorites"},
-    {"id":"github","name":"GitHub","url":"https://github.com/","section":"favorites"},
-    {"id":"youtube","name":"YouTube","url":"https://www.youtube.com/","section":"favorites"},
-    {"id":"figma","name":"Figma","url":"https://www.figma.com/","section":"favorites"},
-    {"id":"wikipedia","name":"Wikipedia","url":"https://en.wikipedia.org/","section":"favorites"},
-    {"id":"resources","name":"Design resources","url":"https://example.com/design-resources","section":"space","spaceId":"work"},
-    {"id":"inspiration","name":"Design inspiration","url":"https://example.com/inspiration","section":"space","spaceId":"personal"}
+    {
+      "id": "google",
+      "name": "Google",
+      "url": "https://www.google.com/",
+      "section": "favorites"
+    },
+    {
+      "id": "github",
+      "name": "GitHub",
+      "url": "https://github.com/",
+      "section": "favorites"
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube",
+      "url": "https://www.youtube.com/",
+      "section": "favorites"
+    },
+    {
+      "id": "figma",
+      "name": "Figma",
+      "url": "https://www.figma.com/",
+      "section": "favorites"
+    },
+    {
+      "id": "wikipedia",
+      "name": "Wikipedia",
+      "url": "https://en.wikipedia.org/",
+      "section": "favorites"
+    },
+    {
+      "id": "resources",
+      "name": "Design resources",
+      "url": "https://www.figma.com/community",
+      "section": "space",
+      "spaceId": "work"
+    },
+    {
+      "id": "inspiration",
+      "name": "Design inspiration",
+      "url": "https://en.wikipedia.org/wiki/Design",
+      "section": "space",
+      "spaceId": "personal"
+    }
   ],
-  "spaceConfig":{"spaces":[{"id":"work","name":"Work"},{"id":"personal","name":"Personal"}],"expandedIds":["work"]},
-  "tabs":[
-    {"id":101,"windowId":1,"title":"Design notes","url":"https://example.com/design-notes","active":true},
-    {"id":102,"windowId":1,"title":"Project checklist","url":"https://example.com/checklist","active":false}
+  "spaceConfig": {
+    "spaces": [
+      {
+        "id": "work",
+        "name": "Work"
+      },
+      {
+        "id": "personal",
+        "name": "Personal"
+      }
+    ],
+    "expandedIds": [
+      "work"
+    ]
+  },
+  "tabs": [
+    {
+      "id": 101,
+      "windowId": 1,
+      "title": "Design notes",
+      "url": "https://www.figma.com/design/example",
+      "active": true
+    },
+    {
+      "id": 102,
+      "windowId": 1,
+      "title": "Project checklist",
+      "url": "https://github.com/javedius/side-panel/issues",
+      "active": false
+    }
   ],
-  "query":"design"
+  "query": "design"
 }

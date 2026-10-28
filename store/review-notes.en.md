@@ -1,6 +1,6 @@
 # Chrome Web Store review notes
 
-Version 1.21.0 · verified against the source on October 27, 2026.
+Version 1.22.0 · verified against the source on October 27, 2026.
 
 ## Single purpose
 
