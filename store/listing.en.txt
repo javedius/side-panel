@@ -1,0 +1,27 @@
+NAME
+Space — Sidebar & Quick Search
+
+SHORT DESCRIPTION
+Keep favorite sites, spaces, and tabs in one sidebar. Find pages quickly, move sites, and back up your setup.
+
+FULL DESCRIPTION
+Space brings your favorite websites, named spaces, and open tabs into one minimal sidebar for Chrome.
+
+FAVORITES AND SPACES
+Keep up to nine favorite sites in a compact grid with website icons. Create spaces for Work, Personal, Hobbies, or anything else. Drag sites to rearrange them or move them between spaces. Save an open tab by dragging it from the sidebar into Favorites or a space.
+
+QUICK SEARCH
+Press Command+K on Mac or Alt+K on Windows and Linux to search open tabs and saved sites. Switch to an existing tab, enter a website address, or run a web search in a new tab using Google, Yandex, Bing, or DuckDuckGo. Tab and saved-site matching runs locally; web searches are sent to your selected provider only after confirmation.
+
+YOUR SIDEBAR, YOUR WAY
+Choose a light or dark theme, a floating overlay or Chrome's native side panel, and the position and visibility of the site button. Press Command+J on Mac or Alt+J on Windows and Linux to toggle the panel. Shortcuts can be reassigned in Chrome's extension settings.
+
+English and Russian are supported. The interface follows Chrome's language by default, with a manual language choice in settings.
+
+BACKUP AND PLAYBACK CONTROLS
+Export favorites, spaces, and settings in one JSON file. Preview an import before replacing your data and recover the previous state if needed. Use the compact media controls for playback in open tabs; available actions depend on the website.
+
+LOCAL STORAGE, NO ACCOUNT
+Saved sites and settings stay on your device. Space reads open tab titles and addresses for navigation and media information for playback controls. No account, advertising, analytics, or developer-operated cloud sync.
+
+Space maintains its own saved-site lists. Some browser-internal pages restrict injected features. See the privacy policy for details.

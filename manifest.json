@@ -1,0 +1,105 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_extensionName__",
+  "short_name": "Space",
+  "version": "1.21.0",
+  "description": "__MSG_extensionDescription__",
+  "minimum_chrome_version": "116",
+  "permissions": [
+    "sidePanel",
+    "storage",
+    "tabs",
+    "scripting",
+    "favicon"
+  ],
+  "background": {
+    "service_worker": "src/background/index.js"
+  },
+  "action": {
+    "default_title": "__MSG_togglePanel__",
+    "default_icon": {
+      "16": "assets/icons/space-16.png",
+      "32": "assets/icons/space-32.png"
+    }
+  },
+  "side_panel": {
+    "default_path": "src/panel/index.html"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "src/panel/index.html",
+        "src/search/index.html"
+      ],
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ]
+    }
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "exclude_matches": [
+        "https://chromewebstore.google.com/*",
+        "https://chrome.google.com/webstore/*"
+      ],
+      "js": [
+        "src/shared/paths.js",
+        "src/shared/ui-settings.js",
+        "src/shared/messages.js",
+        "src/shared/i18n.js",
+        "src/content/sidebar.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "exclude_matches": [
+        "https://chromewebstore.google.com/*",
+        "https://chrome.google.com/webstore/*"
+      ],
+      "js": [
+        "src/content/media-session-hook.js"
+      ],
+      "world": "MAIN",
+      "all_frames": true,
+      "run_at": "document_start"
+    }
+  ],
+  "icons": {
+    "16": "assets/icons/space-16.png",
+    "32": "assets/icons/space-32.png",
+    "48": "assets/icons/space-48.png",
+    "128": "assets/icons/space-128.png"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+J",
+        "mac": "Command+J",
+        "windows": "Alt+J"
+      },
+      "description": "__MSG_togglePanel__"
+    },
+    "quick-search": {
+      "suggested_key": {
+        "default": "Alt+K",
+        "mac": "Command+K",
+        "windows": "Alt+K"
+      },
+      "description": "__MSG_quickSearch__"
+    }
+  },
+  "default_locale": "en"
+}

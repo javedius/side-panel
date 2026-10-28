@@ -1,0 +1,23 @@
+# Local files and dependencies
+.DS_Store
+**/.DS_Store
+node_modules/
+__pycache__/
+*.py[cod]
+*.log
+.cache/
+
+# Generated packages, unpacked archives, and reports
+release/
+reports/*.json
+coverage/
+*.zip
+*.crx
+
+# Credentials and personal backups
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+space-backup-*.json

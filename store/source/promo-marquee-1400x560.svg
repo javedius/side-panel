@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="560" viewBox="0 0 1400 560" role="img">
+<rect width="1400" height="560" fill="#181818"/>
+<rect x="72.58333333333333" y="58.583333333333336" width="23.833333333333332" height="23.833333333333332" rx="7.333333333333333" fill="none" stroke="#ededeb" stroke-width="4.583333333333333"/>
+<rect x="84.5" y="70.5" width="23.833333333333332" height="23.833333333333332" rx="7.333333333333333" fill="#ededeb"/>
+<text x="128" y="62" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#ededeb">Space</text>
+<text x="72" y="165" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="58" font-weight="700" fill="#ededeb">Your sites, tabs,</text>
+<text x="72" y="239" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="58" font-weight="700" fill="#ededeb">and quick search.</text>
+<text x="75" y="341" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="24" font-weight="400" fill="#a5a5a0">One space. Less searching.</text>
+<rect x="73" y="434" width="171" height="40" rx="10" fill="#242424" stroke="#343434" stroke-width="1"/>
+<text x="91" y="443" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="19" font-weight="400" fill="#c6c6bf">⌘K / Alt+K</text>
+<text x="265" y="445" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#a5a5a0">Open and find</text>
+<rect x="954" y="34" width="326" height="454" rx="20" fill="#202020" stroke="#343434" stroke-width="1"/>
+<rect x="976" y="56" width="326" height="454" rx="20" fill="#242424" stroke="#464641" stroke-width="1"/>
+<rect x="1000.6041666666666" y="79.60416666666667" width="13.541666666666668" height="13.541666666666668" rx="4.166666666666667" fill="none" stroke="#ededeb" stroke-width="2.604166666666667"/>
+<rect x="1007.375" y="86.375" width="13.541666666666668" height="13.541666666666668" rx="4.166666666666667" fill="#ededeb"/>
+<text x="1034" y="81" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#ededeb">Space</text>
+<rect x="998" y="128" width="82" height="58" rx="10" fill="#303030"/>
+<rect x="1030.95" y="149.365" width="16.099999999999998" height="11.269999999999998" rx="2.3" fill="none" stroke="#c6c6bf" stroke-width="1.6099999999999999"/>
+<polyline points="1030.95,149.365 1039,155.805 1047.05,149.365" fill="none" stroke="#c6c6bf" stroke-width="1.38" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1092" y="128" width="82" height="58" rx="10" fill="#303030"/>
+<rect x="1127.365" y="146.95" width="11.269999999999998" height="16.099999999999998" rx="2.3" fill="none" stroke="#c6c6bf" stroke-width="1.6099999999999999"/>
+<polyline points="1130.585,153.39 1135.415,153.39" fill="none" stroke="#c6c6bf" stroke-width="1.38" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="1130.585,157.415 1134.61,157.415" fill="none" stroke="#c6c6bf" stroke-width="1.38" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1186" y="128" width="82" height="58" rx="10" fill="#303030"/>
+<circle cx="1227" cy="155" r="8.049999999999999" fill="none" stroke="#c6c6bf" stroke-width="1.6099999999999999"/>
+<polyline points="1218.95,155 1235.05,155" fill="none" stroke="#c6c6bf" stroke-width="1.38" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="1227,146.95 1227,163.05" fill="none" stroke="#c6c6bf" stroke-width="1.38" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="998" y="198" width="82" height="58" rx="10" fill="#303030"/>
+<rect x="1030.95" y="219.365" width="16.099999999999998" height="11.269999999999998" rx="2.3" fill="none" stroke="#c6c6bf" stroke-width="1.6099999999999999"/>
+<polyline points="1030.95,219.365 1039,225.805 1047.05,219.365" fill="none" stroke="#c6c6bf" stroke-width="1.38" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1092" y="198" width="82" height="58" rx="10" fill="#303030"/>
+<rect x="1127.365" y="216.95" width="11.269999999999998" height="16.099999999999998" rx="2.3" fill="none" stroke="#c6c6bf" stroke-width="1.6099999999999999"/>
+<polyline points="1130.585,223.39 1135.415,223.39" fill="none" stroke="#c6c6bf" stroke-width="1.38" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="1130.585,227.415 1134.61,227.415" fill="none" stroke="#c6c6bf" stroke-width="1.38" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1186" y="198" width="82" height="58" rx="10" fill="#303030"/>
+<circle cx="1227" cy="225" r="8.049999999999999" fill="none" stroke="#c6c6bf" stroke-width="1.6099999999999999"/>
+<polyline points="1218.95,225 1235.05,225" fill="none" stroke="#c6c6bf" stroke-width="1.38" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="1227,216.95 1227,233.05" fill="none" stroke="#c6c6bf" stroke-width="1.38" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="998" y="268" width="82" height="58" rx="10" fill="#303030"/>
+<rect x="1030.95" y="289.365" width="16.099999999999998" height="11.269999999999998" rx="2.3" fill="none" stroke="#c6c6bf" stroke-width="1.6099999999999999"/>
+<polyline points="1030.95,289.365 1039,295.805 1047.05,289.365" fill="none" stroke="#c6c6bf" stroke-width="1.38" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1092" y="268" width="82" height="58" rx="10" fill="#303030"/>
+<rect x="1127.365" y="286.95" width="11.269999999999998" height="16.099999999999998" rx="2.3" fill="none" stroke="#c6c6bf" stroke-width="1.6099999999999999"/>
+<polyline points="1130.585,293.39 1135.415,293.39" fill="none" stroke="#c6c6bf" stroke-width="1.38" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="1130.585,297.415 1134.61,297.415" fill="none" stroke="#c6c6bf" stroke-width="1.38" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1186" y="268" width="82" height="58" rx="10" fill="#303030"/>
+<circle cx="1227" cy="295" r="8.049999999999999" fill="none" stroke="#c6c6bf" stroke-width="1.6099999999999999"/>
+<polyline points="1218.95,295 1235.05,295" fill="none" stroke="#c6c6bf" stroke-width="1.38" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="1227,286.95 1227,303.05" fill="none" stroke="#c6c6bf" stroke-width="1.38" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="998" y="361" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="12" font-weight="400" fill="#a5a5a0">Spaces</text>
+<polyline points="1000,395 1005,400 1000,405" fill="none" stroke="#a5a5a0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1019" y="391" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="16" font-weight="400" fill="#ededeb">Work</text>
+<polyline points="1000,434 1005,439 1000,444" fill="none" stroke="#a5a5a0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1019" y="430" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="16" font-weight="400" fill="#ededeb">Personal</text>
+<rect x="855" y="272" width="470" height="54" rx="16" fill="#111111"/>
+<rect x="849" y="265" width="470" height="54" rx="16" fill="#f5f5f3" stroke="#c2c2bb" stroke-width="1"/>
+<circle cx="874" cy="292" r="6.6499999999999995" fill="none" stroke="#64645d" stroke-width="1.3299999999999998"/>
+<polyline points="867.35,292 880.65,292" fill="none" stroke="#64645d" stroke-width="1.14" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="874,285.35 874,298.65" fill="none" stroke="#64645d" stroke-width="1.14" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="896" y="282" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#64645d">Search…</text>
+<polyline points="1286,292 1300,292 1295,287" fill="none" stroke="#64645d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="1300,292 1295,297" fill="none" stroke="#64645d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

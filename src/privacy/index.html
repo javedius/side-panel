@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Privacy Policy — Space</title>
+  <link rel="stylesheet" href="privacy.css">
+</head>
+<body><main>
+  <a class="brand" href="#top" aria-label="Space">Space</a>
+  <h1 id="top">Privacy Policy</h1>
+  <p class="meta">Space extension · version 1.21.0 · updated October 27, 2026</p>
+  <p>Space is a Chrome sidebar for saved sites, spaces, open tabs, and quick search. This policy describes how the current extension version handles data.</p>
+  <h2>Data Space uses</h2>
+  <ul>
+    <li>Names, addresses, and order of sites you save; their space assignments; space names and expanded states; sidebar and search engine settings.</li>
+    <li>Titles, addresses, and identifiers of open tabs and windows, used to display tabs, find matches, and switch to an existing tab.</li>
+    <li>Text entered in quick search, used locally to match open tabs and saved sites. When you confirm a web search, it is included in the selected search engine's results URL.</li>
+    <li>Media titles, artist names, playback state, and available playback commands on open sites. Space uses audio/video elements and Media Session to display and control playback. It does not record audio or video.</li>
+    <li>The JSON backup file you explicitly choose to import. Space does not have general access to files on your computer.</li>
+  </ul>
+  <h2>Local storage</h2>
+  <p>Saved sites, spaces, settings, and the recovery snapshot before an import are stored in the extension's local Chrome storage on your device. Tab associations and sidebar state also use Chrome session storage. This information supports the extension's interface and is not sent to the developer.</p>
+  <p>Search query text is not saved in Space's persistent storage. Matching runs locally within the extension. Space does not use Chrome's browsing-history API or maintain its own browsing-history log.</p>
+  <p>The recovery snapshot remains until a later import replaces it or the extension's data is removed. JSON files you download are stored separately in your browser's download location.</p>
+  <h2>When information leaves your device</h2>
+  <p>When you explicitly run a web search, Space opens a new tab containing your query in the URL of Google, Yandex, Bing, or DuckDuckGo, according to your settings. The search provider receives and processes the query as it would for a regular browser search, under its own policies. Space does not request external search suggestions while you type.</p>
+  <p>Opening a site makes a normal browser request to that address. Site icons use Chrome's built-in favicon mechanism; Space does not connect to a separate third-party icon service.</p>
+  <p>The current version has no developer-operated data collection server, advertising or analytics SDK, registration, payment system, or cloud synchronization.</p>
+  <h2>Data use and sharing</h2>
+  <p>Data is used only for the features described above. Space does not sell it, use it for personalized advertising, or send it to the developer for analysis. Data access is limited to the extension's functionality and the actions you initiate.</p>
+  <p>Space's use of user data complies with the <a href="https://developer.chrome.com/docs/webstore/program-policies/user-data/" rel="noopener noreferrer">Chrome Web Store User Data Policy</a>, including its Limited Use requirements.</p>
+  <h2>Your controls and data removal</h2>
+  <p>You can edit or delete saved sites and spaces, change settings, and export your data through the sidebar. Removing an item from the current list does not remove downloaded backup files or the recovery snapshot retained before an import. Remove the extension through Chrome to remove Space's local extension data; delete downloaded backup files separately.</p>
+  <p>You can hide the site button and change the theme or sidebar mode. Hiding the button does not revoke extension permissions; those are managed in Chrome's extension settings.</p>
+  <h2>Why permissions are needed</h2>
+  <p>Tab access supports the tab list, matching, and switching. Storage saves your sites and settings. The side-panel permission enables Chrome's native sidebar mode. Local script execution on HTTP(S) sites provides the floating sidebar, site button, quick search, and playback controls. Favicon access displays site icons. Browser-internal pages remain subject to Chrome's restrictions.</p>
+  <h2>Contact and changes</h2>
+  <p>For support or privacy questions, use the support section on Space's Chrome Web Store listing. If data-handling practices change, this policy must be updated before releasing that version.</p>
+</main></body>
+</html>

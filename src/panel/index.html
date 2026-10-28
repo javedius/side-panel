@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Space</title><script src="../shared/paths.js"></script><script src="../shared/ui-settings.js"></script><script src="../shared/messages.js"></script><script src="../shared/i18n.js"></script><script src="../shared/theme-bootstrap.js"></script><link rel="stylesheet" href="styles.css"></head>
+<body>
+<main>
+<div class="pinned-section">
+<header><h1 class="brand"><span class="brand-mark" aria-hidden="true"></span> Space</h1><div class="header-actions">
+<details id="panel-menu" class="site-menu"><summary id="panel-menu-trigger" aria-label="Panel actions" title="Panel actions" data-i18n-aria-label="Panel actions" data-i18n-title="Panel actions">⋯</summary><div id="panel-menu-actions" class="site-menu-actions">
+<button type="button" id="manage" class="tab-action" aria-label="Edit sites" data-i18n-aria-label="Edit sites"><span data-i18n="Edit favorites">Edit favorites</span></button>
+<button type="button" id="settings" class="tab-action"><span data-i18n="Panel settings">Panel settings</span></button>
+<button type="button" id="backup-open" class="tab-action"><span data-i18n="Backup">Backup</span></button>
+</div></details>
+<button type="button" id="close-overlay" class="icon-button" aria-label="Close panel" title="Close panel (Escape)" hidden data-i18n-aria-label="Close panel" data-i18n-title="Close panel (Escape)">×</button>
+</div></header>
+<section aria-label="Favorite sites" data-i18n-aria-label="Favorite sites"><div id="favorites" class="favorites"></div></section>
+</div>
+<div class="panel-lists">
+<section class="space-section" aria-labelledby="space-heading">
+<div class="section-heading"><h2 id="space-heading"><span data-i18n="Spaces">Spaces</span></h2><button type="button" id="create-space" class="icon-button section-add" aria-label="Create space" title="Create space" data-i18n-aria-label="Create space" data-i18n-title="Create space">+</button></div>
+<div id="spaces-scroll" class="list-scroll" role="region" aria-label="Scroll spaces" tabindex="0" data-i18n-aria-label="Scroll spaces"><div id="spaces" class="spaces"></div></div>
+</section>
+<section class="tabs-section" aria-labelledby="tabs-heading">
+<div class="section-heading"><h2 id="tabs-heading"><span data-i18n="Tabs">Tabs</span> <span id="tab-count"></span></h2><button type="button" id="new-tab" class="icon-button" aria-label="New tab" title="New tab" data-i18n-aria-label="New tab" data-i18n-title="New tab">+</button></div>
+<div id="tabs-error" class="error" role="alert" hidden><span data-i18n="Could not load tabs.">Could not load tabs.</span> <button type="button" id="retry-tabs"><span data-i18n="Retry">Retry</span></button></div>
+<div id="tabs-scroll" class="list-scroll" role="region" aria-label="Scroll tabs" tabindex="0" data-i18n-aria-label="Scroll tabs"><div id="tabs" aria-busy="true"><p class="empty-state"><span data-i18n="Loading tabs…">Loading tabs…</span></p></div></div>
+</section>
+</div>
+</main>
+<footer><section class="music-player" aria-label="Media player" data-i18n-aria-label="Media player">
+<div class="track-copy"><span id="track-title"><span data-i18n="Media in your tabs">Media in your tabs</span></span><small id="track-detail"><span data-i18n="Start playback on a site">Start playback on a site</span></small></div>
+<div class="player-controls">
+<button type="button" id="media-previous" class="player-button" aria-label="Previous track" title="Previous track" disabled data-i18n-aria-label="Previous track" data-i18n-title="Previous track"></button>
+<button type="button" id="media-restart" class="player-button" aria-label="Restart" title="Restart" disabled data-i18n-aria-label="Restart" data-i18n-title="Restart"></button>
+<button type="button" id="media-toggle" class="player-button player-play" aria-label="Play" title="Play" disabled data-i18n-aria-label="Play" data-i18n-title="Play"></button>
+<button type="button" id="media-next" class="player-button" aria-label="Next track" title="Next track" disabled data-i18n-aria-label="Next track" data-i18n-title="Next track"></button>
+</div></section></footer>
+<div id="status" role="status" aria-live="polite" hidden><span id="status-text"></span><button id="undo" hidden><span data-i18n="Undo">Undo</span></button></div>
+<dialog id="editor" aria-labelledby="dialog-title"><form id="site-form" novalidate><div class="dialog-heading"><h2 id="dialog-title"><span data-i18n="Add site">Add site</span></h2><button type="button" id="cancel" class="icon-button" aria-label="Close" data-i18n-aria-label="Close">×</button></div><label for="name"><span data-i18n="Name">Name</span></label><input id="name" maxlength="80" autocomplete="off" placeholder="For example, Mail" data-i18n-placeholder="For example, Mail"><label for="url"><span data-i18n="Site address">Site address</span></label><input id="url" type="url" autocomplete="url" placeholder="example.com" aria-describedby="form-error"><fieldset><legend><span data-i18n="Save to">Save to</span></legend><label class="choice"><input type="radio" name="section" value="favorites" checked> <span data-i18n="Favorites grid">Favorites grid</span></label><label class="choice"><input type="radio" name="section" value="space"> <span data-i18n="Space">Space</span></label></fieldset><label for="site-space" data-i18n="Space">Space</label><select id="site-space" aria-describedby="form-error"></select><p id="form-error" class="error" role="alert"></p><div class="form-actions"><button type="button" id="remove" class="danger" hidden><span data-i18n="Delete">Delete</span></button><button type="submit" id="save" class="primary"><span data-i18n="Save">Save</span></button></div></form></dialog>
+<dialog id="space-editor" aria-labelledby="space-dialog-title"><form id="space-form" novalidate>
+<div class="dialog-heading"><h2 id="space-dialog-title"><span data-i18n="Create space">Create space</span></h2><button type="button" id="space-cancel" class="icon-button" aria-label="Close" data-i18n-aria-label="Close">×</button></div>
+<label for="space-name"><span data-i18n="Space name">Space name</span></label><input id="space-name" maxlength="60" placeholder="Work, Personal, Hobbies" autocomplete="off" aria-describedby="space-error" data-i18n-placeholder="Work, Personal, Hobbies">
+<p id="space-error" class="error" role="alert"></p><div class="form-actions"><button type="submit" id="space-save" class="primary"><span data-i18n="Create">Create</span></button></div>
+</form></dialog>
+<dialog id="space-delete-dialog" aria-labelledby="space-delete-title" aria-describedby="space-delete-description"><form id="space-delete-form" novalidate>
+<div class="dialog-heading"><h2 id="space-delete-title"><span data-i18n="Delete space?">Delete space?</span></h2></div>
+<p id="space-delete-description" class="dialog-description"></p><p id="space-delete-error" class="error" role="alert"></p>
+<div class="form-actions"><button type="button" id="space-delete-cancel" class="secondary"><span data-i18n="Cancel">Cancel</span></button><button type="submit" id="space-delete-confirm" class="danger"><span data-i18n="Delete space">Delete space</span></button></div>
+</form></dialog>
+<dialog id="settings-dialog" aria-labelledby="settings-title"><form id="settings-form" novalidate>
+<div class="dialog-heading"><h2 id="settings-title"><span data-i18n="Panel settings">Panel settings</span></h2><button type="button" id="settings-cancel" class="icon-button" aria-label="Close" data-i18n-aria-label="Close">×</button></div>
+<fieldset class="settings-section"><legend><span data-i18n="Appearance">Appearance</span></legend>
+<label for="language"><span data-i18n="Language">Language</span></label><select id="language"><option value="auto" data-i18n="System default">System default</option><option value="en" data-i18n="English">English</option><option value="ru" data-i18n="Русский">Русский</option></select>
+<p class="settings-hint"><span data-i18n="Uses Chrome’s interface language. Other languages fall back to English.">Uses Chrome’s interface language. Other languages fall back to English.</span></p>
+<label for="panel-theme"><span data-i18n="Theme">Theme</span></label><select id="panel-theme"><option value="dark" data-i18n="Dark">Dark</option><option value="light" data-i18n="Light">Light</option></select>
+</fieldset>
+<fieldset class="settings-section"><legend>Panel</legend>
+<label for="panel-mode"><span data-i18n="Panel mode">Panel mode</span></label><select id="panel-mode"><option value="overlay" data-i18n="Overlay">Overlay</option><option value="push" data-i18n="Native side panel">Native side panel</option></select>
+<p id="native-panel-hint" class="settings-hint" hidden><span data-i18n="Chrome controls the side used by its native panel.">Chrome controls the side used by its native panel.</span></p>
+<label for="panel-side"><span data-i18n="Panel side">Panel side</span></label><select id="panel-side"><option value="left" data-i18n="Left">Left</option><option value="right" data-i18n="Right">Right</option></select>
+</fieldset>
+<fieldset class="settings-section"><legend><span data-i18n="Search">Search</span></legend>
+<label for="search-engine"><span data-i18n="Search engine">Search engine</span></label><select id="search-engine"><option value="google">Google</option><option value="yandex" data-i18n="Yandex">Yandex</option><option value="bing">Bing</option><option value="duckduckgo">DuckDuckGo</option></select>
+<p class="settings-hint"><span data-i18n="Quick search opens web results in a new tab.">Quick search opens web results in a new tab.</span></p>
+</fieldset>
+<fieldset class="settings-section"><legend><span data-i18n="Site button">Site button</span></legend>
+<label class="settings-toggle" for="show-launcher"><span><span data-i18n="Show site button">Show site button</span></span><input type="checkbox" id="show-launcher" checked></label>
+<label for="launcher-position"><span data-i18n="Button position">Button position</span></label><select id="launcher-position"><option value="top" data-i18n="Top">Top</option><option value="center" data-i18n="Center">Center</option><option value="bottom" data-i18n="Bottom">Bottom</option></select>
+<p class="settings-hint"><span data-i18n="When the button is hidden, use the extension icon in Chrome to open Space.">When the button is hidden, use the extension icon in Chrome to open Space.</span></p>
+</fieldset>
+<fieldset class="settings-section"><legend><span data-i18n="Keyboard">Keyboard</span></legend>
+<div class="shortcut-row"><span><span data-i18n="Toggle panel">Toggle panel</span></span><kbd id="panel-shortcut" aria-live="polite">…</kbd></div>
+<div class="shortcut-row"><span><span data-i18n="Quick search">Quick search</span></span><kbd id="search-shortcut" aria-live="polite">…</kbd></div>
+<p id="shortcut-hint" class="settings-hint" hidden></p>
+<button type="button" id="configure-shortcut" class="settings-link"><span data-i18n="Change shortcuts">Change shortcuts</span></button>
+</fieldset>
+<fieldset class="settings-section"><legend><span data-i18n="Privacy">Privacy</span></legend>
+<p class="settings-hint"><span data-i18n="Sites and settings are stored on your device. Space uses open tab titles and addresses for navigation, and playback information for the media controls. Web searches are sent to your selected search engine after confirmation.">Sites and settings are stored on your device. Space uses open tab titles and addresses for navigation, and playback information for the media controls. Web searches are sent to your selected search engine after confirmation.</span></p>
+<a class="settings-link" href="../privacy/index.html" target="_blank" rel="noopener noreferrer"><span data-i18n="Privacy policy">Privacy policy</span></a>
+</fieldset>
+<p id="settings-error" class="error" role="alert"></p><div class="form-actions"><button type="submit" id="settings-save" class="primary"><span data-i18n="Save">Save</span></button></div>
+</form></dialog>
+<dialog id="backup-dialog" aria-labelledby="backup-title"><form id="backup-form" novalidate>
+<div class="dialog-heading"><h2 id="backup-title"><span data-i18n="Backup">Backup</span></h2><button type="button" id="backup-close" class="icon-button" aria-label="Close" data-i18n-aria-label="Close">×</button></div>
+<p class="dialog-description"><span data-i18n="Back up your favorites, spaces, and settings in one file.">Back up your favorites, spaces, and settings in one file.</span></p>
+<div class="backup-actions"><button type="button" id="backup-export" class="secondary"><span data-i18n="Download backup">Download backup</span></button><button type="button" id="backup-choose" class="secondary"><span data-i18n="Choose file">Choose file</span></button></div>
+<input type="file" id="backup-file" accept=".json,application/json" aria-label="Backup file" hidden data-i18n-aria-label="Backup file">
+<p class="settings-hint"><span data-i18n="JSON file, up to 2 MB. Processed on this device.">JSON file, up to 2 MB. Processed on this device.</span></p>
+<button type="button" id="backup-restore" class="settings-link" hidden><span data-i18n="Data before the last import">Data before the last import</span></button>
+<div id="backup-preview" hidden><p id="backup-filename" class="backup-filename"></p><p id="backup-summary" class="dialog-description"></p>
+<p class="dialog-description"><span data-i18n="Your current sites, spaces, and settings will be replaced. Open tabs will stay open. Your previous data will be saved for recovery.">Your current sites, spaces, and settings will be replaced. Open tabs will stay open. Your previous data will be saved for recovery.</span></p>
+<div class="form-actions"><button type="button" id="backup-preview-cancel" class="secondary"><span data-i18n="Cancel">Cancel</span></button><button type="submit" id="backup-confirm" class="primary"><span data-i18n="Replace data">Replace data</span></button></div></div>
+<p id="backup-error" class="error" role="alert"></p>
+</form></dialog>
+<script src="index.js" type="module"></script>
+</body></html>

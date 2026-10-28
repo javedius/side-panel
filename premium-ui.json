@@ -1,0 +1,30 @@
+{
+  "profile": "product-admin",
+  "sourceRoots": [
+    "src"
+  ],
+  "locale": "en",
+  "canonicalMap": "docs/ux-contract.md",
+  "requiredCapabilities": [
+    "Form",
+    "Scrollbar",
+    "Toast",
+    "CRUD",
+    "Select/Listbox"
+  ],
+  "ownership": {
+    "Select/Listbox": "native"
+  },
+  "requiredCommands": [
+    "unit",
+    "check"
+  ],
+  "commands": {
+    "unit": "npm test",
+    "check": "npm run check"
+  },
+  "evidence": {
+    "crudFullFlow": "tests/ui/panel.test.js",
+    "failurePaths": "tests/ui/panel.test.js"
+  }
+}

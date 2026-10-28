@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title data-i18n="Quick search — Space">Quick search — Space</title><script src="../shared/paths.js"></script><script src="../shared/ui-settings.js"></script><script src="../shared/messages.js"></script><script src="../shared/i18n.js"></script><script src="../shared/theme-bootstrap.js"></script><link rel="stylesheet" href="styles.css"></head>
+<body>
+<main id="search-surface" class="search-surface" aria-labelledby="search-title">
+<form id="quick-search-form" novalidate>
+<h1 id="search-title" class="sr-only"><span data-i18n="Quick search">Quick search</span></h1>
+<label class="sr-only" for="search-query"><span data-i18n="Search query">Search query</span></label>
+<div class="search-field"><span id="search-provider-icon" class="search-symbol" role="img" aria-label="Search engine" data-i18n-aria-label="Search engine"><img id="search-provider-image" alt="" width="16" height="16" hidden></span><input id="search-query" type="text" maxlength="2000" autocomplete="off" spellcheck="false" placeholder="Search…" aria-describedby="search-error" autofocus data-i18n-placeholder="Search…"><button type="button" id="search-clear" class="icon-button" aria-label="Clear query" title="Clear query" hidden data-i18n-aria-label="Clear query" data-i18n-title="Clear query">×</button><button type="submit" id="search-submit" class="search-submit" aria-label="Search in a new tab" title="Search in a new tab" disabled data-i18n-aria-label="Search in a new tab" data-i18n-title="Search in a new tab"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></path></svg></button></div>
+<p id="search-error" class="search-error" role="alert" hidden></p>
+<ul id="search-results" class="search-results" aria-label="Tabs and saved sites" hidden data-i18n-aria-label="Tabs and saved sites"></ul>
+<p id="search-matches-status" class="sr-only" role="status" aria-live="polite"></p>
+</form></main>
+<script src="index.js" type="module"></script>
+</body></html>

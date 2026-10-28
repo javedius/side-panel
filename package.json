@@ -1,0 +1,11 @@
+{
+  "name": "space-side-panel",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/test.mjs",
+    "check": "node scripts/check.mjs",
+    "package": "python3 scripts/package-extension.py",
+    "verify": "npm run check && npm test && npm run package"
+  }
+}

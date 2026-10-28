@@ -1,0 +1,14 @@
+{
+  "extensionName": {
+    "message": "Space — Sidebar & Quick Search"
+  },
+  "extensionDescription": {
+    "message": "Keep favorite sites, spaces, and tabs in one sidebar. Find pages quickly, move sites, and back up your setup."
+  },
+  "togglePanel": {
+    "message": "Toggle Space"
+  },
+  "quickSearch": {
+    "message": "Quick search in a new tab"
+  }
+}
