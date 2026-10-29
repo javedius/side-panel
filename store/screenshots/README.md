@@ -1,16 +1,24 @@
 # Global screenshot artwork
 
-Three English interface illustrations in the Chrome Web Store image dimensions: **1280×800, RGB PNG, no alpha**. All three appear in the repository README.
+Five English interface illustrations in the Chrome Web Store image dimensions: **1280×800, RGB PNG, no alpha**. All five appear in the repository README.
 
 | Preview | PNG |
 |---|---|
 | Favorites, spaces, and tabs in the light theme | [01-sidebar.png](global/01-sidebar.png) |
 | Quick search across open tabs and saved sites | [02-quick-search.png](global/02-quick-search.png) |
-| Themes, panel modes, and languages | [03-themes.png](global/03-themes.png) |
+| Save a website to a named space | [03-spaces.png](global/03-spaces.png) |
+| Themes, panel modes, and languages | [04-settings.png](global/04-settings.png) |
+| Backup export and import preview | [05-backup.png](global/05-backup.png) |
+
+## Use the carousel set
+
+Run `npm run package` from the project root. `release/space-carousel-1.22.0.zip` contains only the five PNGs, with numbered filenames in presentation order. Extract it and select those PNGs for Global screenshots; the carousel ZIP itself is a download convenience, not an extension upload. The image files are also included in the store kit.
 
 ## Provenance
 
 These are **code-rendered interface illustrations with example data**, not screenshots captured from a running Chrome installation. Each image says “Interface illustration · Example data”. They depict existing features; they are not evidence of live extension behavior, hotkey assignment, or store acceptance.
+
+The renderer is entirely offline and uses no browser, headless browser, or user profile. Backup counts are obtained from the actual `src/backup/model.js` validator; dialog labels correspond to `src/panel/index.html`.
 
 The renderer reads both palettes from `src/shared/ui-settings.js` and produces search matches through the actual `src/search/model.js` rules. Sidebar geometry follows `src/panel/styles.css`; search geometry follows `src/search/styles.css`. Example site/space/tab data is in `source/examples.json`. No private browser data is used or modified. `previews.json` records the extension version, source hashes, dimensions and capture type. Site icons come from the websites' public favicon URLs recorded in `source/icons/sources.json`; those marks belong to their respective owners.
 

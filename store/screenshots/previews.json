@@ -1,6 +1,7 @@
 {
   "kind": "interface-illustrations",
   "actualBrowserCapture": false,
+  "browserAccessUsed": false,
   "version": "1.22.0",
   "data": "source/examples.json",
   "renderer": "scripts/render-screenshots.py",
@@ -18,7 +19,19 @@
       "mode": "RGB"
     },
     {
-      "file": "global/03-themes.png",
+      "file": "global/03-spaces.png",
+      "width": 1280,
+      "height": 800,
+      "mode": "RGB"
+    },
+    {
+      "file": "global/04-settings.png",
+      "width": 1280,
+      "height": 800,
+      "mode": "RGB"
+    },
+    {
+      "file": "global/05-backup.png",
       "width": 1280,
       "height": 800,
       "mode": "RGB"
@@ -30,7 +43,10 @@
     "src/shared/ui-settings.js": "93095a906f8cb5615551aa3a65b9d2a1e372d9bfde7f089e18a8e3b7c92cbd9b",
     "src/search/model.js": "038eda47279695fff91d40c417ec912e3356059071e3d3e76415acdeb14e03c2",
     "src/shared/site-icon.js": "0e800defb63f6884a6114c064e09af0175552b477ab473ef57448b28966d1bc4",
-    "src/shared/site-icon.css": "f7cfb10e008ce49bdf470cd20cf30837b44c0a095cf0b7dc6b4b3402643ee61a"
+    "src/shared/site-icon.css": "f7cfb10e008ce49bdf470cd20cf30837b44c0a095cf0b7dc6b4b3402643ee61a",
+    "src/panel/index.html": "ae0fca800d2a3b0e63b3bead6d7d044f258f340c0d6b80f06ed112527e90afaa",
+    "src/backup/model.js": "53162dfabe58ccc0eb7323b84b1c7f13bbc4cfe4bf643641ab9cecc7d82caf4c",
+    "src/backup/dialog.js": "18a6946554cbaa1a0a6437bd7bab446934346542e8ab2d4d953bb1bcb1596ff1"
   },
   "artDirection": {
     "reference": "https://chromewebstore.google.com/detail/ziziyi-space-chat-with-we/lilckelmopbcffmglfmfhelaajhjpcff?hl=en-US",

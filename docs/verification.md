@@ -139,3 +139,6 @@ Packaging now consumes src/ and assets/icons/ via shared validation, rather than
 
 
 2026-10-29: redesigned the three gallery illustrations to follow the user's ZIZIYI Space reference composition: warm white background, large serif headlines, orange accents, three pastel feature labels, and a browser-context illustration. Current Space UI, site logos, actual model search matches, and example-only provenance are retained. Runtime source, permissions, and settings are unchanged. Renamed the third gallery image to 03-themes.png and updated README links. PNG dimensions/opaque RGB format, SVG structure, and store-kit copies are checked during packaging; actual browser captures remain outstanding.
+
+
+2026-10-30: expanded the source-rendered gallery to five slides at the user's explicit request to work without browser access. Added site-to-space editing, first-fold appearance/panel settings, and a backup import preview based on the actual validated example data. All files remain marked interface illustrations and use no browser/profile data. README embeds all five; packaging validates the ordered set and produces a dedicated five-PNG carousel ZIP alongside the extension and store kit. No runtime code or permissions changed.

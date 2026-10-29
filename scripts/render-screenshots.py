@@ -30,10 +30,12 @@ if not Path(UNICODE).exists():
 runtime = subprocess.run(['node', '--input-type=module', '-e', """
 import './src/shared/ui-settings.js';
 import './src/search/model.js';
+import './src/backup/model.js';
 import {readFileSync} from 'node:fs';
 const data=JSON.parse(readFileSync('store/screenshots/source/examples.json','utf8'));
 console.log(JSON.stringify({dark:SpaceUi.themeTokens('dark'),light:SpaceUi.themeTokens('light'),
-  matches:SpaceSearch.matches(data.query,data.tabs,data.sites,data.spaceConfig,1),data}));
+  matches:SpaceSearch.matches(data.query,data.tabs,data.sites,data.spaceConfig,1),
+  backup:SpaceBackup.create({sites:data.sites,spaceConfig:data.spaceConfig,uiSettings:SpaceUi.normalize({language:'en',theme:'light'})}),data}));
 """], cwd=ROOT, capture_output=True, check=True, text=True)
 DATA = json.loads(runtime.stdout)
 
@@ -292,16 +294,8 @@ def search_surface(a,x,y,w,theme='light'):
         a.text(x+44*k,top+20*k,item['detail'],10*k,c['--muted'])
 
 
-def overview(light=False):
+def overview():
     a=gallery_canvas()
-    if light:
-        editorial_copy(a,[('Your browser,',False),('your rhythm.',True)],
-                       ['Choose a theme and a panel mode.','Make Space feel like yours.'],
-                       [('Light + dark themes','sun'),('Overlay or native panel','tabs'),('English + Russian','globe')])
-        article_box=browser_window(a)
-        article(a,article_box[0],article_box[1],398,article_box[3])
-        panel(a,902,134,332,610,'dark')
-        return a.save('03-themes')
     editorial_copy(a,[('Your sites,',False),('your tabs,',False),('in one Space.',True)],
                    ['Favorites, spaces, and open tabs.','Everything close to your work.'],
                    [('Your favorite sites','grid'),('Organized spaces','folder'),('All your open tabs','tabs')])
@@ -322,10 +316,113 @@ def search():
     return a.save('02-quick-search')
 
 
+def detail_context(a):
+    box=browser_window(a)
+    article(a,box[0],box[1],398,box[3])
+    panel(a,902,134,332,610,'light')
+    a.text(675,132,'ENLARGED INTERFACE DETAIL',10,'#98918c')
+
+
+def ui_text(a,x,y,value,size=14,color=None,bold=False,max_width=None):
+    a.text(x,y,value,size,color or DATA['light']['--text'],bold,max_width=max_width)
+
+
+def ui_field(a,x,y,w,label,value,select=False):
+    c=DATA['light']
+    ui_text(a,x,y,label,12,c['--muted'])
+    a.rect(x,y+24,w,42,c['--bg'],10,c['--line'])
+    ui_text(a,x+12,y+38,value,14,max_width=w-40)
+    if select:chevron(a,x+w-18,y+45,c['--muted'],True)
+
+
+def ui_button(a,x,y,w,label,primary=False):
+    c=DATA['light']
+    a.rect(x,y,w,40,c['--accent'] if primary else c['--surface'],10,None if primary else c['--line'])
+    a.text(x+w/2,y+13,label,13,c['--primary-text'] if primary else c['--text'],center=True)
+
+
+def ui_dialog(a,x,y,w,h,title):
+    c=DATA['light']
+    a.shadow(x,y,w,h,21,65)
+    a.rect(x,y,w,h,c['--surface'],21,c['--line'])
+    ui_text(a,x+26,y+26,title,19,bold=True)
+    ui_text(a,x+w-40,y+23,'×',22,c['--muted'])
+
+
+def spaces():
+    a=gallery_canvas()
+    editorial_copy(a,[('A place for',False),('every part',False),('of your day.',True)],
+                   ['Keep work, personal links, and hobbies','in spaces you can name and organize.'],
+                   [('Create + rename spaces','folder'),('Move sites between spaces','tabs'),('Keep website logos','globe')])
+    detail_context(a)
+    x,y,w,h=655,200,490,372
+    # A real site editor includes a space selector before its Save action.
+    ui_dialog(a,x,y-23,w,h+80,'Add site')
+    ui_field(a,x+26,y+54,w-52,'Name','Design resources')
+    ui_field(a,x+26,y+138,w-52,'Site address','https://www.figma.com/community')
+    ui_text(a,x+26,y+225,'Save to',12,DATA['light']['--muted'])
+    for i,(label,selected) in enumerate([('Favorites grid',False),('Space',True)]):
+        xx=x+28+i*165;yy=y+254
+        a.rect(xx,yy,14,14,'#ffffff',7,DATA['light']['--accent'],1)
+        if selected:a.rect(xx+4,yy+4,6,6,DATA['light']['--accent'],3)
+        ui_text(a,xx+25,yy,label,13)
+    ui_field(a,x+26,y+293,w-52,'Space','Work',True)
+    ui_button(a,x+w-112,y+381,86,'Save',True)
+    return a.save('03-spaces')
+
+
+def settings():
+    a=gallery_canvas()
+    editorial_copy(a,[('Your browser,',False),('your rhythm.',True)],
+                   ['Choose a theme and a panel mode.','Make Space feel like yours.'],
+                   [('Light + dark themes','sun'),('Overlay or native panel','tabs'),('English + Russian','globe')])
+    detail_context(a)
+    x,y,w,h=655,160,490,546
+    ui_dialog(a,x,y,w,h,'Panel settings')
+    ui_text(a,x+26,y+80,'Appearance',14,bold=True)
+    ui_field(a,x+26,y+111,w-52,'Language','English',True)
+    ui_text(a,x+26,y+188,'Uses Chrome’s interface language.',11,DATA['light']['--muted'])
+    ui_text(a,x+26,y+206,'Other languages fall back to English.',11,DATA['light']['--muted'])
+    ui_field(a,x+26,y+244,w-52,'Theme','Light',True)
+    ui_text(a,x+26,y+338,'Panel',14,bold=True)
+    ui_field(a,x+26,y+369,w-52,'Panel mode','Overlay',True)
+    ui_field(a,x+26,y+455,w-52,'Panel side','Right',True)
+    a.rect(x+w-12,y+80,3,h-106,'#eeeeec',1)
+    a.rect(x+w-12,y+80,3,93,'#b6b6b0',1)
+    return a.save('04-settings')
+
+
+def backup():
+    a=gallery_canvas()
+    editorial_copy(a,[('Keep a copy.',False),('Keep your',False),('peace of mind.',True)],
+                   ['Save your sites, spaces, and settings.','Preview before restoring your setup.'],
+                   [('One JSON backup','folder'),('Preview before import','grid'),('Recover previous data','tabs')])
+    detail_context(a)
+    x,y,w,h=645,173,510,510
+    ui_dialog(a,x,y,w,h,'Backup')
+    ui_text(a,x+26,y+80,'Back up your favorites, spaces, and settings',13)
+    ui_text(a,x+26,y+102,'in one file.',13)
+    ui_button(a,x+26,y+143,164,'Download backup')
+    ui_button(a,x+202,y+143,128,'Choose file')
+    ui_text(a,x+26,y+205,'JSON file, up to 2 MB. Processed on this device.',12,DATA['light']['--muted'])
+    ui_text(a,x+26,y+253,'space-backup-example.json',13,DATA['light']['--muted'])
+    data=DATA['backup']['data']
+    count=sum(site['section']=='favorites' for site in data['sites'])
+    summary=f"Favorites: {count} · Spaces: {len(data['spaceConfig']['spaces'])} · Sites: {len(data['sites'])}"
+    ui_text(a,x+26,y+284,summary,14)
+    for i,line in enumerate(['Your current sites, spaces, and settings will be replaced.',
+                             'Open tabs will stay open. Your previous data will be',
+                             'saved for recovery.']):
+        ui_text(a,x+26,y+328+i*24,line,13)
+    ui_button(a,x+w-275,y+439,96,'Cancel')
+    ui_button(a,x+w-165,y+439,139,'Replace data',True)
+    return a.save('05-backup')
+
+
 if __name__=='__main__':
-    files=[overview(),search(),overview(True)]
-    sources=['src/panel/styles.css','src/search/styles.css','src/shared/ui-settings.js','src/search/model.js','src/shared/site-icon.js','src/shared/site-icon.css']
-    manifest={'kind':'interface-illustrations','actualBrowserCapture':False,'version':json.loads((ROOT/'manifest.json').read_text())['version'],
+    files=[overview(),search(),spaces(),settings(),backup()]
+    sources=['src/panel/styles.css','src/search/styles.css','src/shared/ui-settings.js','src/search/model.js','src/shared/site-icon.js','src/shared/site-icon.css','src/panel/index.html','src/backup/model.js','src/backup/dialog.js']
+    manifest={'kind':'interface-illustrations','actualBrowserCapture':False,'browserAccessUsed':False,'version':json.loads((ROOT/'manifest.json').read_text())['version'],
               'data':'source/examples.json','renderer':'scripts/render-screenshots.py','files':files,
               'sourceHashes':{name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in sources},
               'artDirection':{'reference':REFERENCE,'treatment':'Warm white editorial layout, large serif headline with orange emphasis, pastel feature chips, illustrative browser context','applicationThemeChanged':False}}

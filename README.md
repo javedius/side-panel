@@ -6,7 +6,7 @@ A quiet Chrome sidebar for favorite sites, named spaces, open tabs, and quick se
 
 ## Interface previews
 
-English interface illustrations with example data, using a warm editorial layout with serif headlines, orange accents, and pastel feature labels. Prepared as opaque **1280×800 PNG** images. These are rendered previews of the current features, not captures of a running browser.
+Five English interface illustrations with example data, using a warm editorial layout with serif headlines, orange accents, and pastel feature labels. Prepared as opaque **1280×800 PNG** images. These are rendered previews of the current features, not captures of a running browser.
 
 ### Favorites, spaces, and tabs
 
@@ -16,9 +16,17 @@ English interface illustrations with example data, using a warm editorial layout
 
 ![Space quick search showing an open tab and sites in Work and Personal spaces](store/screenshots/global/02-quick-search.png)
 
-### Themes and panel modes
+### Organize sites into spaces
 
-![Dark Space sidebar with theme, panel-mode, and language options](store/screenshots/global/03-themes.png)
+![Space site editor saving Design resources to the Work space](store/screenshots/global/03-spaces.png)
+
+### Themes, panel modes, and languages
+
+![Space settings with language, theme, panel mode, and panel-side options](store/screenshots/global/04-settings.png)
+
+### Backup and restore
+
+![Space backup dialog with the selected file and an import preview](store/screenshots/global/05-backup.png)
 
 [Download the PNG files and view their provenance](store/screenshots/README.md).
 
