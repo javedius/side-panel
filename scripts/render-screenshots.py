@@ -23,6 +23,7 @@ FONT_CANDIDATES = [
     ('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'),
 ]
 REGULAR, BOLD = next(pair for pair in FONT_CANDIDATES if all(Path(p).exists() for p in pair))
+SERIF = next(str(path) for path in [Path('/System/Library/Fonts/Supplemental/Times New Roman.ttf'), Path('/System/Library/Fonts/Supplemental/Georgia.ttf'), Path('/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf')] if path.exists())
 UNICODE = '/System/Library/Fonts/Supplemental/Arial Unicode.ttf'
 if not Path(UNICODE).exists():
     UNICODE = REGULAR
@@ -56,8 +57,8 @@ class Art:
         self.svg.append('<polyline points="'+' '.join(f'{x:g},{y:g}' for x, y in points)
                         +f'" fill="none" stroke="{color}" stroke-width="{width:g}" stroke-linecap="round" stroke-linejoin="round"/>')
 
-    def text(self, x, y, value, size, color, bold=False, center=False, unicode=False, max_width=None):
-        face = UNICODE if unicode else BOLD if bold else REGULAR
+    def text(self, x, y, value, size, color, bold=False, center=False, unicode=False, max_width=None, serif=False):
+        face = SERIF if serif else UNICODE if unicode else BOLD if bold else REGULAR
         font = ImageFont.truetype(face, round(size*SCALE))
         if max_width:
             full = value
@@ -67,7 +68,7 @@ class Art:
         if center:
             x -= self.draw.textlength(value, font=font)/SCALE/2
         self.draw.text((round(x*SCALE), round(y*SCALE)), value, font=font, fill=color, anchor='lt')
-        self.svg.append(f'<text x="{x:g}" y="{y:g}" dominant-baseline="text-before-edge" font-family="Arial,sans-serif" font-size="{size:g}" font-weight="{700 if bold else 400}" fill="{color}">{html.escape(value)}</text>')
+        self.svg.append(f'<text x="{x:g}" y="{y:g}" dominant-baseline="text-before-edge" font-family="{'Times New Roman,Georgia,serif' if serif else 'Arial,sans-serif'}" font-size="{size:g}" font-weight="{700 if bold else 400}" fill="{color}">{html.escape(value)}</text>')
 
     def logo(self, x, y, size, color):
         k = size/24
@@ -116,23 +117,6 @@ def plus(a,x,y,size,color):
 def chevron(a,x,y,color,open=False,scale=1):
     pts=[(x-3,y-2),(x,y+1),(x+3,y-2)] if open else [(x-2,y-3),(x+1,y),(x-2,y+3)]
     a.line(pts,color,1.5*scale)
-
-
-def brand(a,light=False):
-    colors=DATA['light' if light else 'dark']
-    a.logo(64,48,30,colors['--text'])
-    a.text(106,51,'Space',25,colors['--text'],True)
-
-
-def pill(a,x,y,label,light=False,width=150):
-    c=DATA['light' if light else 'dark']
-    a.rect(x,y,width,40,c['--surface'],8,c['--line'])
-    a.text(x+width/2,y+13,label,15,c['--secondary-text'],center=True,unicode=True)
-
-
-def footer_note(a,light=False):
-    c=DATA['light' if light else 'dark']
-    a.text(68,750,'Interface illustration · Example data',11,c['--muted'])
 
 
 def website_icon(a,url,x,y,size,fallback):
@@ -194,36 +178,107 @@ def panel(a,x,y,w,h,theme='dark'):
         a.text(x+(239+i*29)*k,y+(deck+17)*k,symbol,15*k,color,unicode=True)
 
 
-def overview(light=False):
-    c=DATA['light' if light else 'dark'];a=Art(c['--bg'])
-    brand(a,light)
-    if light:
-        lines=['Same calm.','A lighter look.'];desc=['Light and dark themes.','A sidebar that fits your day.']
-    else:
-        lines=['Your sites.','Within reach.'];desc=['Favorites, spaces, and tabs.','One quiet place for every day.']
-    for i,line in enumerate(lines):a.text(68,205+i*69,line,58,c['--text'],True)
-    for i,line in enumerate(desc):a.text(71,392+i*31,line,21,c['--muted'])
-    a.line([(72,492),(106,492)],c['--strong-line'],2)
-    a.text(72,518,'Save what matters.',16,c['--secondary-text'])
-    a.text(72,548,'Find it when you need it.',16,c['--secondary-text'])
-    pill(a,70,626,'⌘J / Alt+J',light)
-    a.text(240,639,'Toggle the sidebar',14,c['--muted'])
-    panel(a,756,38,440,724,'light' if light else 'dark')
-    footer_note(a,light)
-    return a.save('03-light-theme' if light else '01-sidebar')
+# Store-gallery treatment: warm white, editorial serif, orange emphasis,
+# pastel feature chips, and a large illustrative browser window.
+PAPER='#fffdfb'
+INK='#111827'
+ORANGE='#ef4c18'
+SOFT_TEXT='#606977'
+REFERENCE='https://chromewebstore.google.com/detail/ziziyi-space-chat-with-we/lilckelmopbcffmglfmfhelaajhjpcff?hl=en-US'
 
 
-def search():
-    c=DATA['dark'];a=Art(c['--bg']);brand(a)
-    pill(a,1035,47,'⌘K / Alt+K',width=177)
-    # A neutral backdrop gives context without fabricating a website or browser chrome.
-    for xx,ww in [(112,230),(375,768)]:
-        a.rect(xx,150,ww,360,'#1c1c1c',12)
-        for row in range(6):a.rect(xx+25,183+row*43,min(ww-50,490-row*31),5,'#242424',2)
-    k=1.5;x=280;y=200;w=480*k
+def gallery_canvas():
+    a=Art(PAPER)
+    top=(255,246,240);bottom=(255,255,255)
+    for row in range(800*SCALE):
+        t=row/(800*SCALE-1)
+        color=tuple(round(x+(y-x)*t) for x,y in zip(top,bottom))
+        a.draw.line([(0,row),(1280*SCALE,row)],fill=color)
+    a.svg.append('<defs><linearGradient id="paper" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff6f0"/><stop offset="1" stop-color="#ffffff"/></linearGradient></defs><rect width="1280" height="800" fill="url(#paper)"/>')
+    a.logo(40,35,34,INK)
+    a.text(88,39,'Space',30,INK,True)
+    return a
+
+
+def feature_icon(a,kind,x,y,color):
+    if kind=='grid':
+        for row in range(2):
+            for col in range(2):a.rect(x+col*12,y+row*12,8,8,None,2,color,1.6)
+    elif kind=='folder':
+        a.line([(x,y+5),(x,y+1),(x+8,y+1),(x+11,y+5),(x+23,y+5),(x+23,y+21),(x,y+21),(x,y+5)],color,1.7)
+    elif kind=='tabs':
+        a.rect(x,y,12,22,None,2,color,1.7)
+        a.rect(x+16,y,9,22,None,2,color,1.7)
+    elif kind=='keyboard':
+        a.rect(x-1,y+3,26,17,None,3,color,1.6)
+        for row in range(2):
+            for col in range(4):a.rect(x+4+col*4,y+7+row*4,1.4,1.4,color,0)
+        a.line([(x+7,y+17),(x+18,y+17)],color,1.5)
+    elif kind=='sun':
+        a.draw.ellipse(tuple(round(v*SCALE) for v in (x+7,y+7,x+17,y+17)),outline=color,width=round(1.7*SCALE))
+        a.svg.append(f'<circle cx="{x+12}" cy="{y+12}" r="5" fill="none" stroke="{color}" stroke-width="1.7"/>')
+        for dx,dy in [(0,-1),(1,0),(0,1),(-1,0)]:a.line([(x+12+dx*9,y+12+dy*9),(x+12+dx*12,y+12+dy*12)],color,1.7)
+    else:a.globe(x,y,24,color)
+
+
+def editorial_copy(a,lines,description,features):
+    for i,(line,accent) in enumerate(lines):a.text(40,137+i*70,line,66,ORANGE if accent else INK,serif=True)
+    for i,line in enumerate(description):a.text(42,376+i*29,line,20,SOFT_TEXT)
+    colors=[('#fff0e5','#ef6923'),('#f3edff','#8953f4'),('#edf3ff','#3679ed')]
+    for i,((label,kind),(background,color)) in enumerate(zip(features,colors)):
+        y=484+i*70
+        a.rect(40,y,338,56,background,11)
+        feature_icon(a,kind,61,y+17,color)
+        a.text(104,y+19,label,18,INK,max_width=258,unicode='⌘' in label)
+    a.text(42,762,'Interface illustration · Example data',10,'#85858b')
+
+
+def browser_window(a,x=466,y=42,w=790,h=716):
+    a.shadow(x,y,w,h,18,35)
+    a.rect(x,y,w,h,'#ffffff',18,'#e9dfda')
+    a.rect(x+1,y+1,w-2,40,'#ffebe0',17)
+    a.rect(x+1,y+25,w-2,16,'#ffebe0')
+    for i,color in enumerate(['#ff6258','#ffbd2e','#28c840']):a.rect(x+17+i*17,y+15,10,10,color,5)
+    a.rect(x+88,y+9,210,32,'#ffffff',10)
+    a.globe(x+101,y+17,14,'#85858e')
+    a.text(x+123,y+17,'Project notes',11,'#4d4d54')
+    a.text(x+276,y+16,'×',13,'#707078')
+    plus(a,x+317,y+22,10,'#7e6b63')
+    # Ordinary browser context is illustrative and contains no account identity.
+    a.line([(x+23,y+59),(x+17,y+65),(x+23,y+71)],'#9c9691',1.6)
+    a.line([(x+17,y+65),(x+29,y+65)],'#9c9691',1.6)
+    a.line([(x+51,y+59),(x+57,y+65),(x+51,y+71)],'#c2b9b2',1.6)
+    a.line([(x+45,y+65),(x+57,y+65)],'#c2b9b2',1.6)
+    a.text(x+76,y+58,'↻',16,'#9c9691',unicode=True)
+    a.rect(x+110,y+47,w-174,32,'#faf7f5',16)
+    a.globe(x+122,y+57,13,'#a39b95')
+    a.text(x+146,y+59,'example.com / project-notes',11,'#9c9691')
+    a.logo(x+w-49,y+56,17,INK)
+    a.line([(x,y+86),(x+w,y+86)],'#f0ece9')
+    return x+16,y+92,w-32,h-108
+
+
+def article(a,x,y,w,h):
+    a.text(x+18,y+18,'WORKSPACE / NOTES',10,'#a3a5aa')
+    title=['A little less clutter.','A little more focus.']
+    for i,line in enumerate(title):a.text(x+18,y+53+i*35,line,31,INK,serif=True)
+    # Neutral page placeholder, not a claimed feature or copied website.
+    hero_y=y+147
+    a.rect(x+18,hero_y,w-36,140,'#f5f1ed',12)
+    for i,(color,offset) in enumerate([('#eee3da',0),('#e4e7e7',27),('#dbe0e0',57)]):
+        a.rect(x+18,hero_y+52+offset,w-36,88-offset,color,12)
+    for row,fraction in enumerate([1,.98,.79]):a.rect(x+18,y+310+row*15,(w-36)*fraction,5,'#e6e7ea',2)
+    a.text(x+18,y+385,'Make room for good ideas.',18,'#676d77',serif=True)
+    for row,fraction in enumerate([1,.92,.97,.68]):a.rect(x+18,y+422+row*15,(w-36)*fraction,5,'#e8e9eb',2)
+    if h>550:
+        a.rect(x+18,y+512,w-36,65,'#f6f6f7',8)
+
+
+def search_surface(a,x,y,w,theme='light'):
+    c=DATA[theme];k=w/480
     matches=DATA['matches'];h=(54+8+len(matches)*47)*k
-    a.shadow(x,y,w,h,16*k,95)
-    a.rect(x,y,w,h,c['--bg'],16*k,c['--edit-line'])
+    a.shadow(x,y,w,h,16*k,70)
+    a.rect(x,y,w,h,c['--bg'],16*k,c['--strong-line'])
     a.icon('google',x+14*k,y+18*k,16*k,c['--muted'])
     a.text(x+40*k,y+17*k,DATA['data']['query'],16*k,c['--text'])
     a.text(x+w-62*k,y+17*k,'×',18*k,c['--muted'])
@@ -235,9 +290,35 @@ def search():
         website_icon(a,item['url'],x+18*k,top+7*k,16*k,c['--muted'])
         a.text(x+44*k,top,item['title'],13*k,c['--text'])
         a.text(x+44*k,top+20*k,item['detail'],10*k,c['--muted'])
-    a.text(68,578,'One shortcut. Every destination.',48,c['--text'],True)
-    a.text(71,653,'Switch tabs, open saved sites, or search the web.',21,c['--muted'])
-    footer_note(a)
+
+
+def overview(light=False):
+    a=gallery_canvas()
+    if light:
+        editorial_copy(a,[('Your browser,',False),('your rhythm.',True)],
+                       ['Choose a theme and a panel mode.','Make Space feel like yours.'],
+                       [('Light + dark themes','sun'),('Overlay or native panel','tabs'),('English + Russian','globe')])
+        article_box=browser_window(a)
+        article(a,article_box[0],article_box[1],398,article_box[3])
+        panel(a,902,134,332,610,'dark')
+        return a.save('03-themes')
+    editorial_copy(a,[('Your sites,',False),('your tabs,',False),('in one Space.',True)],
+                   ['Favorites, spaces, and open tabs.','Everything close to your work.'],
+                   [('Your favorite sites','grid'),('Organized spaces','folder'),('All your open tabs','tabs')])
+    article_box=browser_window(a)
+    article(a,article_box[0],article_box[1],398,article_box[3])
+    panel(a,902,134,332,610,'light')
+    return a.save('01-sidebar')
+
+
+def search():
+    a=gallery_canvas()
+    editorial_copy(a,[('Find it.',False),('Open it.',False),('Keep flowing.',True)],
+                   ['One shortcut for tabs, saved sites,','and the web.'],
+                   [('⌘K / Alt+K','keyboard'),('Tabs + saved sites','tabs'),('4 search engines','globe')])
+    box=browser_window(a)
+    article(a,box[0],box[1],box[2],box[3])
+    search_surface(a,548,274,620)
     return a.save('02-quick-search')
 
 
@@ -246,7 +327,8 @@ if __name__=='__main__':
     sources=['src/panel/styles.css','src/search/styles.css','src/shared/ui-settings.js','src/search/model.js','src/shared/site-icon.js','src/shared/site-icon.css']
     manifest={'kind':'interface-illustrations','actualBrowserCapture':False,'version':json.loads((ROOT/'manifest.json').read_text())['version'],
               'data':'source/examples.json','renderer':'scripts/render-screenshots.py','files':files,
-              'sourceHashes':{name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in sources}}
+              'sourceHashes':{name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in sources},
+              'artDirection':{'reference':REFERENCE,'treatment':'Warm white editorial layout, large serif headline with orange emphasis, pastel feature chips, illustrative browser context','applicationThemeChanged':False}}
     (OUT.parent/'previews.json').write_text(json.dumps(manifest,indent=2)+'\n')
     for item in files:
         path=OUT.parent/item['file']

@@ -6,19 +6,19 @@ A quiet Chrome sidebar for favorite sites, named spaces, open tabs, and quick se
 
 ## Interface previews
 
-English interface illustrations with example data, prepared as opaque **1280×800 PNG** images. These are rendered previews of the current features, not captures of a running browser.
+English interface illustrations with example data, using a warm editorial layout with serif headlines, orange accents, and pastel feature labels. Prepared as opaque **1280×800 PNG** images. These are rendered previews of the current features, not captures of a running browser.
 
 ### Favorites, spaces, and tabs
 
-![Space dark sidebar with favorite site icons, Work and Personal spaces, and open tabs](store/screenshots/global/01-sidebar.png)
+![Space light sidebar with favorite site icons, Work and Personal spaces, and open tabs](store/screenshots/global/01-sidebar.png)
 
 ### Quick search
 
 ![Space quick search showing an open tab and sites in Work and Personal spaces](store/screenshots/global/02-quick-search.png)
 
-### Light theme
+### Themes and panel modes
 
-![Space sidebar in the light theme](store/screenshots/global/03-light-theme.png)
+![Dark Space sidebar with theme, panel-mode, and language options](store/screenshots/global/03-themes.png)
 
 [Download the PNG files and view their provenance](store/screenshots/README.md).
 

@@ -18,7 +18,7 @@
       "mode": "RGB"
     },
     {
-      "file": "global/03-light-theme.png",
+      "file": "global/03-themes.png",
       "width": 1280,
       "height": 800,
       "mode": "RGB"
@@ -31,5 +31,10 @@
     "src/search/model.js": "038eda47279695fff91d40c417ec912e3356059071e3d3e76415acdeb14e03c2",
     "src/shared/site-icon.js": "0e800defb63f6884a6114c064e09af0175552b477ab473ef57448b28966d1bc4",
     "src/shared/site-icon.css": "f7cfb10e008ce49bdf470cd20cf30837b44c0a095cf0b7dc6b4b3402643ee61a"
+  },
+  "artDirection": {
+    "reference": "https://chromewebstore.google.com/detail/ziziyi-space-chat-with-we/lilckelmopbcffmglfmfhelaajhjpcff?hl=en-US",
+    "treatment": "Warm white editorial layout, large serif headline with orange emphasis, pastel feature chips, illustrative browser context",
+    "applicationThemeChanged": false
   }
 }
